@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohsin Haider | AI & Cybersecurity Portfolio</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <link rel="stylesheet" href="style.css">
+    
+    <script>
+        // --- TAILWIND & DARK MODE CONFIG (STAYS IN HEAD) ---
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+        
+        // UPDATED: Added new colors from the example
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        // Original 'brand' blue for light mode
+                        brand: {
+                            50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd', 400: '#60a5fa',
+                            500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a',
+                        },
+                        // NEW Colors from the example for dark mode
+                        'navy': '#0a192f', // Dark background
+                        'light-navy': '#112240', // Lighter background for cards
+                        'lightest-navy': '#233554', // Hover for cards
+                        'cyan': '#00d1ff', // Accent color
+                        'slate': '#8892b0', // Text color
+                        'light-slate': '#a8b2d1', // Lighter text
+                        'lightest-slate': '#e6f1ff', // Heading text
+                        'pink-grad': '#f81f8a', // Button gradient
+                        'red-grad': '#e62f4d' // Button gradient
+                    },
+                    transitionProperty: {
+                        'opacity-transform': 'opacity, transform',
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+
+<!-- UPDATED: Default body dark mode styles -->
+<body class="bg-gray-50 dark:bg-navy text-gray-800 dark:text-light-slate antialiased font-sans">
+
+    <!-- ===== UPDATED: Header & Navigation ===== -->
+    <nav class="sticky top-0 z-50 w-full bg-white/80 dark:bg-navy/80 backdrop-blur-lg shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Left: Logo -->
+                <a href="#home" class="text-2xl font-bold text-brand-600 dark:text-lightest-slate">
+                    Mohsin Haider
+                </a>
+                
+                <!-- Center: Desktop Nav -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#projects" class="nav-link">Projects</a>
+                    <a href="#skills" class="nav-link">Skills</a>
+                    <a href="#timeline" class="nav-link">Timeline</a>
+                    <a href="#achievements" class="nav-link">Achievements</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+                
+                <!-- Right: Toggle + Button -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <button id="theme-toggle" class="nav-link">
+                        <i data-feather="moon" class="dark:hidden"></i>
+                        <i data-feather="sun" class="hidden dark:inline"></i>
+                    </button>
+                    <a href="https://drive.google.com/uc?export=download&id=17rgEYdWvNLXtRj2x_iJbhIGrTVbYWxPp" download="Mohsin_Haider_CV.pdf" class="gradient-btn">
+                        Download CV
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="theme-toggle-mobile" class="nav-link mr-4">
+                        <i data-feather="moon" class="dark:hidden"></i>
+                        <i data-feather="sun" class="hidden dark:inline"></i>
+                    </button>
+                    <button id="mobile-menu-btn" class="nav-link">
+                        <i data-feather="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden py-4">
+            <a href="#about" class="mobile-nav-link">About</a>
+            <a href="#projects" class="mobile-nav-link">Projects</a>
+            <a href="#skills" class="mobile-nav-link">Skills</a>
+            <a href="#timeline" class="mobile-nav-link">Timeline</a>
+            <a href="#achievements" class="mobile-nav-link">Achievements</a>
+            <a href="#contact" class="mobile-nav-link">Contact</a>
+            <div class="px-4 mt-4">
+                <a href="https://drive.google.com/uc?export=download&id=17rgEYdWvNLXtRj2x_iJbhIGrTVbYWxPp" download="Mohsin_Haider_CV.pdf" class="gradient-btn w-full">
+                    Download CV
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== UPDATED: Hero Section ===== -->
+    <header id="home" class="min-h-screen flex items-center bg-white dark:bg-navy">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            
+            <!-- Left Side: Image -->
+            <div class="flex justify-center md:justify-start scroll-fade">
+                <!-- NEW: Image Glow Wrapper -->
+                <div class="image-glow-wrapper">
+                    <div class="image-glow-inner">
+                        <img src="profile.jpg" alt="Mohsin Haider" class="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full object-cover">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Text Content -->
+            <div class="py-12 scroll-fade">
+                <span class="text-cyan font-semibold">Hello, I'm</span>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-lightest-slate mt-2 mb-4">
+                    Mohsin Haider
+                </h1>
+                <p class="text-2xl sm:text-3xl text-gray-700 dark:text-slate mb-6 h-16 md:h-auto">
+                    And I'm a <br class="md:hidden">
+                    <span id="typed-text" class="text-cyan font-bold"></span>
+                </p>
+                <p class="text-gray-600 dark:text-slate mb-8 max-w-lg">
+                    A research-oriented CS student seeking an MPhil/PHD to contribute to cutting-edge research and make a significant impact.
+                </p>
+
+                <!-- NEW: Social Links -->
+                <div class="flex items-center space-x-6 mb-8">
+                    <a href="https://linkedin.com/in/mohsin-haider-sultan-498b5b251" target="_blank" class="hero-social-link">
+                        <i data-feather="linkedin" class="w-6 h-6"></i>
+                    </a>
+                    <a href="https://github.com/MohsinHaiderSultan" target="_blank" class="hero-social-link">
+                        <i data-feather="github" class="w-6 h-6"></i>
+                    </a>
+                    <a href="mailto:sp22-bcs136@students.cuisahiwal.edu.pk" class="hero-social-link">
+                        <i data-feather="mail" class="w-6 h-6"></i>
+                    </a>
+                </div>
+
+                <!-- NEW: Hero Buttons -->
+                <div class="flex flex-wrap gap-4">
+                    <a href="#contact" class="hero-btn-primary">
+                        Hire Me
+                    </a>
+                    <a href="#projects" class="hero-btn-secondary">
+                        My Projects
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+    </header>
+
+    <main>
+        <!-- ===== About Me Section ===== -->
+        <section id="about" class="py-24 bg-gray-50 dark:bg-light-navy scroll-fade">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="section-heading">About Me</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="md:col-span-2 space-y-6 text-gray-700 dark:text-light-slate text-lg">
+                        <p>
+                            I am a highly motivated and research-oriented final-year BS Computer Science student at COMSATS University, with an exceptional academic record (CGPA: 3.71/4.0). My comprehensive background in software development, system design, and applied machine learning is demonstrated through multiple end-to-end projects.
+                        </p>
+                        <p>
+                            I am a dedicated problem-solver, passionate about contributing to cutting-edge research in Artificial Intelligence and Cybersecurity. I am also actively engaged in my university's technical community and as a social activist.
+                        </p>
+                    </div>
+                    <div class="bg-white dark:bg-navy p-6 rounded-lg shadow-lg h-fit">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-lightest-slate mb-4">Languages</h3>
+                        <ul class="space-y-2 text-gray-700 dark:text-light-slate">
+                            <li><strong>Shina:</strong> Native Proficiency</li>
+                            <li><strong>Urdu:</strong> Native Proficiency</li>
+                            <li><strong>English:</strong> Intermediate - B1</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Projects Section ===== -->
+        <section id="projects" class="py-24 bg-white dark:bg-navy scroll-fade">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="section-heading">
+                    Academic & Personal Projects
+                </h2>
+                <div id="filter-buttons" class="flex flex-wrap justify-center gap-2 mb-12">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="ai">AI / ML</button>
+                    <button class="filter-btn" data-filter="security">Cybersecurity</button>
+                    <button class="filter-btn" data-filter="web">Web & Mobile</button>
+                    <button class="filter-btn" data-filter="systems">Systems & Tools</button>
+                </div>
+
+                <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Project 1 (Modal) -->
+                    <div class="project-card" data-category="ai security">
+                        <img src="https://placehold.co/600x400/112240/00d1ff?text=AI+LogGuard" alt="AI LogGuard Project" class="project-image">
+                        <div class="p-6">
+                            <div class="tag-container"><span class="tag-cyan">AI/ML</span> <span class="tag-cyan">Cybersecurity</span></div>
+                            <h3 class="project-title">AI LogGuard (Final Year Project)</h3>
+                            <p class="project-description">Real-time log analyzer to detect malicious activities using supervised and unsupervised ML.</p>
+                            <button data-modal-target="modal-ai-logguard" class="project-link as-button">
+                                View Case Study <i data-feather="arrow-right" class="w-4 h-4 ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 (Modal) -->
+                    <div class="project-card" data-category="security systems">
+                        <img src="https://placehold.co/600x400/112240/00d1ff?text=Password+Cracker" alt="Brute-Force Cracker" class="project-image">
+                        <div class="p-6">
+                            <div class="tag-container"><span class="tag-cyan">Cybersecurity</span> <span class="tag-gray">C++</span> <span class="tag-gray">OpenMP</span></div>
+                            <h3 class="project-title">Brute-Force Cracker (OpenMP)</h3>
+                            <p class="project-description">Parallelized brute-force hash-search to evaluate performance improvements using multi-threading.</p>
+                            <button data-modal-target="modal-brute-force-cracker" class="project-link as-button">
+                                View Case Study <i data-feather="arrow-right" class="w-4 h-4 ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 (Modal) -->
+                    <div class="project-card" data-category="ai">
+                        <img src="https://placehold.co/600x400/112240/00d1ff?text=Data+Science" alt="Data Science Project" class="project-image">
+                        <div class="p-6">
+                            <div class="tag-container"><span class="tag-cyan">Data Science</span> <span class="tag-gray">Python</span></div>
+                            <h3 class="project-title">Customer Purchasing Analysis</h3>
+                            <p class="project-description">Performed cleaning, visualization, and ML modelling (Decision Trees, KNN, etc.) to extract insights.</p>
+                            <button data-modal-target="modal-customer-analysis" class="project-link as-button">
+                                View Case Study <i data-feather="arrow-right" class="w-4 h-4 ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Project 4 (Link) -->
+                    <div class="project-card" data-category="web">
+                        <img src="https://placehold.co/600x400/112240/00d1ff?text=AgriSol+Website" alt="AgriSol Website" class="project-image">
+                        <div class="p-6">
+                            <div class="tag-container"><span class="tag-cyan">Full-Stack Web</span> <span class="tag-gray">PHP</span> <span class="tag-gray">MySQL</span></div>
+                            <h3 class="project-title">AgriSol - Agricultural Services</h3>
+                            <p class="project-description">Full-stack web platform connecting farmers with agritech services, featuring user auth and an admin dashboard.</p>
+                            <a href="https://github.com/MohsinHaiderSultan" target="_blank" class="project-link">
+                                View on GitHub <i data-feather="github" class="w-4 h-4 ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 5 (Link) -->
+                    <div class="project-card" data-category="web">
+                        <img src="https://placehold.co/600x400/112240/00d1ff?text=Android+App" alt="Android App Project" class="project-image">
+                        <div class="p-6">
+                            <div class="tag-container"><span class="tag-cyan">Mobile Dev</span> <span class="tag-gray">Firebase</span></div>
+                            <h3 class="project-title">Digital Services Platform App</h3>
+                            <p class="project-description">Android app with Firebase backend to provide digital services like content writing and request management.</p>
+                            <a href="https://github.com/MohsinHaiderSultan" target="_blank" class="project-link">
+                                View on GitHub <i data-feather="github" class="w-4 h-4 ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 6 (Link) -->
+                    <div class="project-card" data-category="systems">
+                        <img src="https://placehold.co/600x400/112240/00d1ff?text=Compiler" alt="Compiler Project" class="project-image">
+                        <div class="p-6">
+                            <div class="tag-container"><span class="tag-cyan">Compilers</span> <span class="tag-gray">C#</span> <span class="tag-gray">.NET</span></div>
+                            <h3 class="project-title">LL(1) & SLR Parser Simulator</h3>
+                            <p class="project-description">Implemented grammar analysis tools and parsing simulators (LL(1), SLR) using C# and Windows Forms.</p>
+                            <a href="https://github.com/MohsinHaiderSultan" target="_blank" class="project-link">
+                                View on GitHub <i data-feather="github" class="w-4 h-4 ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 7 (Link) -->
+                    <div class="project-card" data-category="systems">
+                        <img src="https://placehold.co/600x400/112240/00d1ff?text=EVM" alt="EVM Project" class="project-image">
+                        <div class="p-6">
+                            <div class="tag-container"><span class="tag-gray">OOP</span> <span class="tag-gray">C++</span></div>
+                            <h3 class="project-title">Electronic Voting Machine (EVM)</h3>
+                            <p class="project-description">Simulated EVM using object-oriented C++ with modules for voter registration, secure casting, and tallying.</p>
+                            <a href="https://github.com/MohsinHaiderSultan" target="_blank" class="project-link">
+                                View on GitHub <i data-feather="github" class="w-4 h-4 ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 8 (Link) -->
+                    <div class="project-card" data-category="security systems">
+                        <img src="https://placehold.co/600x400/112240/00d1ff?text=Hashing+Utility" alt="Hashing Utility" class="project-image">
+                        <div class="p-6">
+                            <div class="tag-container"><span class="tag-cyan">Cybersecurity</span> <span class="tag-gray">C++</span> <span class="tag-gray">OpenSSL</span></div>
+                            <h3 class="project-title">Password-to-Hash Utility</h3>
+                            <p class="project-description">A CLI tool for generating salted password hashes to accelerate security testing cycles for other projects.</p>
+                            <a href="https://github.com/MohsinHaiderSultan" target="_blank" class="project-link">
+                                View on GitHub <i data-feather="github" class="w-4 h-4 ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 9 (Link) -->
+                    <div class="project-card" data-category="systems">
+                        <img src="https://placehold.co/600x400/112240/00d1ff?text=Flight+System" alt="Flight System" class="project-image">
+                        <div class="p-6">
+                            <div class="tag-container"><span class="tag-gray">C++</span> <span class="tag-gray">Systems Design</span></div>
+                            <h3 class="project-title">Flight Management System</h3>
+                            <p class="project-description">Console-based system implementing flight scheduling, seat booking, cancellations, and fare calculation.</p>
+                            <a href="https://github.com/MohsinHaiderSultan" target="_blank" class="project-link">
+                                View on GitHub <i data-feather="github" class="w-4 h-4 ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Skills Section ===== -->
+        <section id="skills" class="py-24 bg-gray-50 dark:bg-light-navy scroll-fade">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="section-heading">Technical Skills</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <div class="skill-card">
+                        <i data-feather="cpu" class="skill-icon"></i>
+                        <h3 class="skill-title">AI/ML & Data</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-badge">Python</span> <span class="skill-badge">Scikit-learn</span>
+                            <span class="skill-badge">Pandas</span> <span class="skill-badge">NumPy</span>
+                            <span class="skill-badge">Matplotlib</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card">
+                        <i data-feather="code" class="skill-icon"></i>
+                        <h3 class="skill-title">Languages & Web</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-badge">C++</span> <span class="skill-badge">C</span>
+                            <span class="skill-badge">C#</span> <span class="skill-badge">SQL</span>
+                            <span class="skill-badge">Bash Scripting</span> <span class="skill-badge">HTML/CSS</span>
+                            <span class="skill-badge">JavaScript</span> <span class="skill-badge">PHP</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <i data-feather="tool" class="skill-icon"></i>
+                        <h3 class="skill-title">Frameworks & Tools</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-badge">Android Studio</span> <span class="skill-badge">Firebase</span>
+                            <span class="skill-badge">.NET (WinForms)</span> <span class="skill-badge">OpenMP</span>
+                            <span class="skill-badge">Git</span> <span class="skill-badge">Linux CLI</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Timeline Section ===== -->
+        <section id="timeline" class="py-24 bg-white dark:bg-navy scroll-fade">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="section-heading">Career & Education Timeline</h2>
+                
+                <div class="timeline-container">
+                    <!-- Timeline Item 1 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2022 - 2026 (Expected)</div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">BS in Computer Science</h3>
+                            <p class="timeline-subtitle">COMSATS University Islamabad, Sahiwal Campus</p>
+                            <p class="timeline-description">
+                                Key Achievement: <strong>CGPA: 3.71/4.0</strong>
+                            </p>
+                            <div class="accordion-container">
+                                <button class="accordion-header">
+                                    <span>View Relevant Coursework</span>
+                                    <i data-feather="chevron-down" class="accordion-icon"></i>
+                                </button>
+                                <div class="accordion-body">
+                                    <ul class="grid grid-cols-2 gap-2 text-sm text-gray-600 dark:text-slate p-4">
+                                        <li>• Artificial Intelligence</li>
+                                        <li>• Machine Learning</li>
+                                        <li>• Information Security</li>
+                                        <li>• Cybersecurity</li>
+                                        <li>• Data Science</li>
+                                        <li>• Compiler Construction</li>
+                                        <li>• Software Engineering</li>
+                                        <li>• Operating Systems</li>
+                                        <li>• Data Structures & Algorithms</li>
+                                        <li>• Parallel & Distributed Computing</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 2 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2022 - Current</div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Event Management Team Member</h3>
+                            <p class="timeline-subtitle">COMSATS University Sahiwal</p>
+                            <p class="timeline-description">
+                                Assisted in organizing technical and cultural events at the university.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Timeline Item 3 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2019 - 2021</div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Intermediate (General Science)</h3>
+                            <p class="timeline-subtitle">Govt Boys Degree College Danyore, Gilgit-Baltistan</p>
+                            <p class="timeline-description">
+                                Key Achievement: <strong>97% (FBISE)</strong>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Timeline Item 4 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2017 - 2019</div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Matriculation (Science Group)</h3>
+                            <p class="timeline-subtitle">Al Mustafa Public School, Gilgit-Baltistan</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Timeline Item 5 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2017 - Current</div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Social Activist</h3>
+                            <p class="timeline-subtitle">Community Organizations</p>
+                            <p class="timeline-description">
+                                Actively engaged in collaborative efforts with various social organizations to create positive community change.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        
+        <!-- ===== Certifications Section ===== -->
+        <section id="certifications" class="py-24 bg-gray-50 dark:bg-light-navy scroll-fade">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="section-heading">Certifications</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <!-- Cert Card 1 -->
+                    <div class="cert-card">
+                        <div class="cert-icon-bg">
+                            <i data-feather="shield" class="cert-icon"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="cert-title">Google Cybersecurity Professional</h3>
+                            <p class="cert-issuer">Coursera (Google)</p>
+                            <a href="https://www.coursera.org/account/accomplishments/verify/6C9CLS6EPZU4" target="_blank" class="credential-link">
+                                View Credential <i data-feather="external-link" class="w-3 h-3 ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Cert Card 2 -->
+                    <div class="cert-card">
+                        <div class="cert-icon-bg">
+                            <i data-feather="code" class="cert-icon"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="cert-title">Python Developer</h3>
+                            <p class="cert-issuer">Coursera (University of Michigan)</p>
+                            <a href="https://www.coursera.org/account/accomplishments/verify/PA2XUFE7S4P3" target="_blank" class="credential-link">
+                                View Credential <i data-feather="external-link" class="w-3 h-3 ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Achievements Section ===== -->
+        <section id="achievements" class="py-24 bg-white dark:bg-navy scroll-fade">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="section-heading">Achievements & Leadership</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <!-- Achievement Card 1: Academic -->
+                    <div class="achievement-card">
+                        <i data-feather="award" class="achievement-icon"></i>
+                        <div>
+                            <h3 class="achievement-title">Academic Excellence</h3>
+                            <p class="achievement-description">
+                                Maintained a consistent <strong>3.71/4.0 CGPA</strong> and achieved a <strong>97% score</strong> in Intermediate (FBISE).
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Achievement Card 2: Leadership -->
+                    <div class="achievement-card">
+                        <i data-feather="users" class="achievement-icon"></i>
+                        <div>
+                            <h3 class="achievement-title">Leadership & Teamwork</h3>
+                            <p class="achievement-description">
+                                Active member of the <strong>Management Society</strong> and <strong>Computer Science Society</strong>, involved in organizing events.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Achievement Card 3: Technical -->
+                    <div class="achievement-card">
+                        <i data-feather="terminal" class="achievement-icon"></i>
+                        <div>
+                            <h3 class="achievement-title">Technical Engagement</h3>
+                            <p class="achievement-description">
+                                Active participant in university <strong>programming contests</strong>, lab projects, and technical discussions.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Achievement Card 4: Community -->
+                    <div class="achievement-card">
+                        <i data-feather="heart" class="achievement-icon"></i>
+                        <div>
+                            <h3 class="achievement-title">Community & Sports</h3>
+                            <p class="achievement-description">
+                                Engaged in <strong>peer mentoring</strong> and social welfare since 2017. Won a university cricket tournament (2020).
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== References Section ===== -->
+        <section id="references" class="py-24 bg-gray-50 dark:bg-light-navy scroll-fade">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="section-heading">References</h2>
+                <p class="text-lg text-gray-700 dark:text-light-slate">
+                    Professional and academic references are available upon request.
+                </pre>
+            </div>
+        </section>
+
+        <!-- ===== Contact Section ===== -->
+       <section id="contact" class="py-24 bg-white dark:bg-navy scroll-fade">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="section-heading">Get In Touch</h2>
+                <p class="text-lg text-gray-700 dark:text-light-slate text-center mb-8">
+                    I'm actively seeking MPhil/PhD opportunities and am always open to discussing research.
+                </p>
+
+                <form id="contact-form" action="https://formspree.io/f/mgvrvwrz" method="POST" class="space-y-6">
+                    <div>
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" name="name" id="name" class="form-input" required>
+                    </div>
+                    <div>
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" name="email" id="email" class="form-input" required>
+                    </div>
+                    <div>
+                        <label for="message" class="form-label">Message</label>
+                        <textarea name="message" id="message" rows="4" class="form-textarea" required></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="hero-btn-primary text-lg px-8 py-3">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+
+                <p id="form-status" class="text-center mt-6"></p>
+
+                <div class="flex justify-center space-x-8 mt-12">
+                    <a href="https://linkedin.com/in/mohsin-haider-sultan-498b5b251" target="_blank" class="social-link">
+                        <i data-feather="linkedin" class="w-8 h-8"></i>
+                    </a>
+                    <a href="https://github.com/MohsinHaiderSultan" target="_blank" class="social-link">
+                        <i data-feather="github" class="w-8 h-8"></i>
+                    </a>
+                    <a href="mailto:sp22-bcs136@students.cuisahiwal.edu.pk" class="social-link">
+                        <i data-feather="mail" class="w-8 h-8"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== Footer ===== -->
+    <footer class="py-8 bg-gray-50 dark:bg-navy border-t border-gray-200 dark:border-lightest-navy/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500 dark:text-slate">
+            <p>&copy; 2025 Mohsin Haider. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- ==================================
+         MODALS
+    ================================== -->
+
+    <!-- ===== Modal 1: AI LogGuard ===== -->
+    <div id="modal-ai-logguard" class="modal-backdrop">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">AI LogGuard (FYP)</h3>
+                <button class="modal-close-btn"><i data-feather="x" class="w-6 h-6"></i></button>
+            </div>
+            <div class="my-6 modal-body">
+                <img src="https://placehold.co/600x400/112240/00d1ff?text=AI+LogGuard" alt="AI LogGuard Project" class="project-image mb-6">
+                <h4 class="modal-subtitle">Project Overview</h4>
+                <p class="modal-description">
+                    Developed a real-time log analysis tool to detect malicious activities using supervised and unsupervised ML techniques. This was my Final Year Project, focusing on practical cybersecurity applications of AI.
+                </p>
+                <h4 class="modal-subtitle">The Problem</h4>
+                <p class="modal-description">
+                    Manually sifting through millions of system logs for signs of a security breach is inefficient and prone to human error. Malicious actors often hide their tracks within this "noise."
+                </p>
+                <h4 class="modal-subtitle">My Solution</h4>
+                <p class="modal-description">
+                    I built a tool that ingests logs in real-time. It uses a **supervised model** (like a Random Forest) trained on known attack patterns (e.g., SQL injection, brute-force attempts) and an **unsupervised model** (like Isolation Forest) to detect novel anomalies. The system flags suspicious activity and presents it on a simple dashboard (built with Tkinter).
+                </p>
+                <h4 class="modal-subtitle mt-6">Technologies Used</h4>
+                <div class="flex flex-wrap gap-2">
+                    <span class="skill-badge">Python</span> <span class="skill-badge">Scikit-learn</span>
+                    <span class="skill-badge">Pandas</span> <span class="skill-badge">Matplotlib</span>
+                    <span class="skill-badge">Tkinter</span> <span class="skill-badge">Firebase</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-close-btn hero-btn-secondary">Close</button>
+                <a href="https://github.com/MohsinHaiderSultan" target="_blank" class="hero-btn-primary">
+                    <i data-feather="github" class="w-4 h-4 mr-2"></i> View on GitHub
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Modal 2: Brute-Force Cracker ===== -->
+    <div id="modal-brute-force-cracker" class="modal-backdrop">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Brute-Force Cracker (OpenMP)</h3>
+                <button class="modal-close-btn"><i data-feather="x" class="w-6 h-6"></i></button>
+            </div>
+            <div class="my-6 modal-body">
+                <img src="https://placehold.co/600x400/112240/00d1ff?text=Password+Cracker" alt="Brute-Force Cracker Project" class="project-image mb-6">
+                <h4 class="modal-subtitle">Project Overview</h4>
+                <p class="modal-description">
+                    This project explored high-performance computing concepts by parallelizing a brute-force hash-search algorithm using OpenMP. The goal was to evaluate the performance improvements gained from multi-threaded execution.
+                </p>
+                <h4 class="modal-subtitle">The Challenge</h4>
+                <p class="modal-description">
+                    A single-threaded password cracker is extremely slow, trying one combination at a time. The challenge was to correctly partition the search space (e.g., all 8-character passwords) and distribute the workload across multiple CPU cores without conflicts.
+                </p>
+                <h4 class="modal-subtitle">My Solution</h4>
+                <p class="modal-description">
+                    I implemented a C++ program that used OpenMP's `parallel for` directive to split the search. Each thread was assigned a different starting range of password combinations to test. I experimented with different hash functions (MD5/SHA) and measured the linear speed-up as more cores were added, demonstrating the power of parallel programming.
+                </p>
+                <h4 class="modal-subtitle mt-6">Technologies Used</h4>
+                <div class="flex flex-wrap gap-2">
+                    <span class="skill-badge">C++</span> <span class="skill-badge">OpenMP</span>
+                    <span class="skill-badge">Parallel Computing</span> <span class="skill-badge">Cybersecurity</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-close-btn hero-btn-secondary">Close</button>
+                <a href="https://github.com/MohsinHaiderSultan" target="_blank" class="hero-btn-primary">
+                    <i data-feather="github" class="w-4 h-4 mr-2"></i> View on GitHub
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ===== Modal 3: Customer Purchasing Analysis ===== -->
+    <div id="modal-customer-analysis" class="modal-backdrop">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Customer Purchasing Analysis</h3>
+                <button class="modal-close-btn"><i data-feather="x" class="w-6 h-6"></i></button>
+            </div>
+            <div class="my-6 modal-body">
+                <img src="https://placehold.co/600x400/112240/00d1ff?text=Data+Science" alt="Data Science Project" class="project-image mb-6">
+                <h4 class="modal-subtitle">Project Overview</h4>
+                <p class="modal-description">
+                    A comprehensive data science project to analyze a customer dataset, perform data cleaning, visualize patterns, and build multiple machine learning models to extract actionable insights.
+                </p>
+                <h4 class="modal-subtitle">My Process</h4>
+                <p class="modal-description">
+                    1.  **Data Cleaning:** Handled missing values, removed duplicates, and corrected data types using Pandas.
+                    2.  **Visualization:** Used Matplotlib and Seaborn to create histograms, scatter plots, and heatmaps to understand correlations between features like age, income, and spending.
+                    3.  **Modeling:** Implemented and compared several ML models:
+                        * **Supervised:** Decision Trees, K-Nearest Neighbors (KNN), Naive Bayes, and Linear Regression to predict spending habits.
+                        * **Unsupervised:** K-Means Clustering to segment customers into distinct groups (e.g., "high-value," "budget-conscious").
+                </p>
+                <h4 class="modal-subtitle mt-6">Technologies Used</h4>
+                <div class="flex flex-wrap gap-2">
+                    <span class="skill-badge">Python</span> <span class="skill-badge">Data Science</span>
+                    <span class="skill-badge">Scikit-learn</span> <span class="skill-badge">Pandas</span>
+                    <span class="skill-badge">NumPy</span> <span class="skill-badge">Matplotlib</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-close-btn hero-btn-secondary">Close</button>
+                <a href="https://github.com/MohsinHaiderSultan" target="_blank" class="hero-btn-primary">
+                    <i data-feather="github" class="w-4 h-4 mr-2"></i> View on GitHub
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ===== Back to Top Button ===== -->
+    <a href="#home" id="back-to-top" class="back-to-top-btn">
+        <i data-feather="arrow-up" class="w-6 h-6"></i>
+    </a>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
