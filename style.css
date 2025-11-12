@@ -859,3 +859,38 @@ body {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* --- NEW: Loader Animation & Form Status --- */
+
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.form-status {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    font-weight: 600;
+}
+.form-status.show {
+    opacity: 1;
+}
+.form-status.success {
+    color: rgb(34 197 94); /* text-green-500 */
+}
+.form-status.error {
+    color: rgb(239 68 68); /* text-red-500 */
+}
+
+/* Utility (just in case) */
+.hidden {
+    display: none;
+}
