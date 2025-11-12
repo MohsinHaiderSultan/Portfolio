@@ -25,7 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Initialize theme on page load
-    setTheme(localStorage.theme || 'light');
+    // Default to 'dark' for this theme
+    if (!localStorage.theme) {
+        localStorage.theme = 'dark';
+    }
+    setTheme(localStorage.theme);
 
     const toggleDarkMode = () => {
         const isDark = document.documentElement.classList.toggle('dark');
@@ -68,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ===========================
     if (typeof Typed !== 'undefined') {
         new Typed('#typed-text', {
-            strings: ['Artificial Intelligence', 'Cybersecurity', 'Machine Learning', 'Systems Design'],
+            strings: ['Ethical Hacker', 'AI & ML Developer', 'CyberSecurity Expert', 'Full-Stack Developer'],
             typeSpeed: 50,
             backSpeed: 30,
             backDelay: 2000,
@@ -94,6 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             projectCards.forEach(card => {
                 const categories = card.getAttribute('data-category');
+                // Using toggle with a boolean force
                 card.classList.toggle('hidden', filter !== 'all' && !categories.includes(filter));
             });
         });
@@ -168,92 +173,119 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollFadeElements.forEach(el => observer.observe(el));
     }
 
-   
-// ===========================
-// Contact Form Handling
-// ===========================
+    
+    // ===========================
+    // Contact Form Handling
+    // ===========================
     const contactForm = document.getElementById('contact-form');
     const formStatus = document.getElementById('form-status');
 
-    const showStatus = (message, type = 'success') => {
-        formStatus.textContent = message;
-        formStatus.className = `form-status show ${type}`;
-        setTimeout(() => formStatus.classList.remove('show'), 4000);
-    };
+    if (contactForm && formStatus) {
+        const showStatus = (message, type = 'success') => {
+            formStatus.textContent = message;
+            formStatus.className = `form-status show ${type}`;
+            setTimeout(() => formStatus.classList.remove('show'), 4000);
+        };
 
-    const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-    const submitForm = async (name, email, message) => {
-        const formData = new FormData();
-        formData.append('name', name);
-        formData.append('email', email);
-        formData.append('message', message);
+        // ** UPDATED submitForm function to return a boolean for success/failure **
+        const submitForm = async (name, email, message) => {
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('email', email);
+            formData.append('message', message);
 
-        try {
-            const response = await fetch(contactForm.action, {
-                method: 'POST',
-                body: formData,
-                headers: { 'Accept': 'application/json' }
-            });
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
 
-            if (response.ok) {
-                showStatus('✅ Message sent successfully!', 'success');
-                localStorage.removeItem('offlineMessage');
-            } else {
-                const data = await response.json();
-                const errorMsg = data.errors ? data.errors.map(err => err.message).join(", ") : "Something went wrong!";
-                showStatus(`❌ ${errorMsg}`, 'error');
+                if (response.ok) {
+                    showStatus('✅ Message sent successfully!', 'success');
+                    localStorage.removeItem('offlineMessage');
+                    return true; // <-- Return true on success
+                } else {
+                    const data = await response.json();
+                    const errorMsg = data.errors ? data.errors.map(err => err.message).join(", ") : "Something went wrong!";
+                    showStatus(`❌ ${errorMsg}`, 'error');
+                    return false; // <-- Return false on error
+                }
+            } catch (error) {
+                if (!navigator.onLine) {
+                    localStorage.setItem('offlineMessage', JSON.stringify({ name, email, message }));
+                    showStatus('⚠️ You are offline. Message saved locally.', 'error');
+                } else {
+                    showStatus('❌ Network error. Please try again.', 'error');
+                }
+                return false; // <-- Return false on catch
             }
-        } catch (error) {
-            if (!navigator.onLine) {
-                localStorage.setItem('offlineMessage', JSON.stringify({ name, email, message }));
-                showStatus('⚠️ You are offline. Message saved locally.', 'error');
-            } else {
-                showStatus('❌ Network error. Please try again.', 'error');
+        };
+
+        // ** UPDATED Event Listener with loader logic **
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            // ** NEW: Get loader elements from index.html **
+            const btnText = submitBtn.querySelector('.button-text');
+            const btnLoader = submitBtn.querySelector('.button-loader');
+
+            // ** NEW: Start loading state **
+            submitBtn.disabled = true;
+            btnText.classList.add('hidden');
+            btnLoader.classList.remove('hidden');
+            initFeather(); // Re-render the new loader icon
+
+            const name = contactForm.name.value.trim();
+            const email = contactForm.email.value.trim();
+            const message = contactForm.message.value.trim();
+
+            const stopLoading = () => {
+                submitBtn.disabled = false;
+                btnText.classList.remove('hidden');
+                btnLoader.classList.add('hidden');
+            };
+
+            if (!name || !email || !message) {
+                showStatus('Please fill in all fields.', 'error');
+                stopLoading();
+                return;
             }
+
+            if (!validateEmail(email)) {
+                showStatus('Please enter a valid email address.', 'error');
+                stopLoading();
+                return;
+            }
+
+            // Await submission and check for success
+            const success = await submitForm(name, email, message);
+            
+            if (success) {
+                contactForm.reset(); // Only reset form on success
+            }
+            
+            stopLoading(); // Stop loading regardless of success/failure
+        });
+
+        // --- Check for offline saved message on page load ---
+        const offlineMsg = localStorage.getItem('offlineMessage');
+        if (offlineMsg) {
+            const { name, email, message } = JSON.parse(offlineMsg);
+            showStatus('⚠️ You have a saved message from offline. It will be sent automatically when online.', 'error');
         }
-    };
 
-    contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const submitBtn = contactForm.querySelector('button[type="submit"]');
-        submitBtn.disabled = true;
-
-        const name = contactForm.name.value.trim();
-        const email = contactForm.email.value.trim();
-        const message = contactForm.message.value.trim();
-
-        if (!name || !email || !message) {
-            showStatus('Please fill in all fields.', 'error');
-            submitBtn.disabled = false;
-            return;
-        }
-
-        if (!validateEmail(email)) {
-            showStatus('Please enter a valid email address.', 'error');
-            submitBtn.disabled = false;
-            return;
-        }
-
-        await submitForm(name, email, message);
-        contactForm.reset();
-        submitBtn.disabled = false;
-    });
-
-    // --- Check for offline saved message on page load ---
-    const offlineMsg = localStorage.getItem('offlineMessage');
-    if (offlineMsg) {
-        const { name, email, message } = JSON.parse(offlineMsg);
-        showStatus('⚠️ You have a saved message from offline. It will be sent automatically when online.', 'error');
+        // --- Automatically submit offline messages when back online ---
+        window.addEventListener('online', async () => {
+            const saved = localStorage.getItem('offlineMessage');
+            if (saved) {
+                const { name, email, message } = JSON.parse(saved);
+                showStatus('📤 Sending saved offline message...', 'success');
+                await submitForm(name, email, message);
+            }
+        });
     }
-
-    // --- Automatically submit offline messages when back online ---
-    window.addEventListener('online', async () => {
-        const saved = localStorage.getItem('offlineMessage');
-        if (saved) {
-            const { name, email, message } = JSON.parse(saved);
-            showStatus('📤 Sending saved offline message...', 'success');
-            await submitForm(name, email, message);
-        }
-    });
 });
