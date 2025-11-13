@@ -218,7 +218,7 @@ body {
     line-height: 1.25rem;
     margin-bottom: 1rem; /* mb-4 */
     height: 4rem; /* h-16 */
-    text-align: justify; /* ADDED THIS LINE */
+    /* REMOVED: text-align: justify; */
 }
 .dark .project-description {
     color: rgb(136 146 176); /* dark:text-slate */
@@ -513,7 +513,7 @@ body {
 }
 .dark .timeline-description {
     color: rgb(136 146 176); /* dark:text-slate */
-    text-align: justify; /* ADDED THIS LINE */
+    /* REMOVED: text-align: justify; */
 }
 
 /* --- Accordion --- */
@@ -662,7 +662,7 @@ body {
     font-size: 0.875rem; /* sm */
     line-height: 1.25rem;
     color: rgb(55 65 81); /* text-gray-600 */
-    text-align: justify; /* ADDED THIS LINE */
+    /* REMOVED: text-align: justify; */
 }
 .dark .achievement-description {
     color: rgb(168 178 209); /* dark:text-light-slate */
@@ -760,7 +760,7 @@ body {
 .modal-description {
     color: rgb(55 65 81); /* text-gray-600 */
     margin-bottom: 1rem; /* mb-4 */
-    text-align: justify; /* ADDED THIS LINE */
+    /* REMOVED: text-align: justify; */
 }
 .dark .modal-description {
     color: rgb(136 146 176); /* dark:text-slate */
@@ -864,10 +864,7 @@ body {
     transform: translateY(0);
 }
 
-/* --- NEW: Text Justify Utility --- */
-.text-justify {
-    text-align: justify;
-}
+/* --- REMOVED .text-justify utility --- */
 
 /* --- NEW: Loader Animation & Form Status --- */
 
