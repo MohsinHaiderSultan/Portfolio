@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ===========================
     if (typeof Typed !== 'undefined') {
         new Typed('#typed-text', {
-            strings: ['Ethical Hacker', 'AI & ML Developer', 'CyberSecurity Expert', 'Full-Stack Developer'],
+            strings: ['Ethical Hacker', 'AI and ML Developer', 'CyberSecurity Expert', 'Full-Stack Developer', 'UX/UI Designer'],
             typeSpeed: 50,
             backSpeed: 30,
             backDelay: 2000,
@@ -289,3 +289,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
