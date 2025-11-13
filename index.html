@@ -134,7 +134,8 @@
                     And I'm a <br class="md:hidden">
                     <span id="typed-text" class="text-cyan font-bold"></span>
                 </p>
-                <p class="text-gray-600 dark:text-slate mb-8 max-w-lg">
+                <!-- UPDATED: Added text-justify -->
+                <p class="text-gray-600 dark:text-slate mb-8 max-w-lg text-justify">
                     A research-oriented CS student seeking an MPhil/PHD to contribute to cutting-edge research and make a significant impact.
                 </p>
 
@@ -151,13 +152,18 @@
                     </a>
                 </div>
 
-                <!-- NEW: Hero Buttons -->
+                <!-- UPDATED: Hero Buttons -->
                 <div class="flex flex-wrap gap-4">
                     <a href="#contact" class="hero-btn-primary">
                         Contact Me
                     </a>
-                    <a href="#projects" class="hero-btn-secondary">
+                    <!-- UPDATED: "My Projects" button now hides on mobile -->
+                    <a href="#projects" class="hero-btn-secondary hidden md:inline-flex">
                         My Projects
+                    </a>
+                    <!-- NEW: "Download CV" button now shows on mobile -->
+                    <a href="https://drive.google.com/uc?export=download&id=17rgEYdWvNLXtRj2x_iJbhIGrTVbYWxPp" download="Mohsin_Haider_CV.pdf" class="hero-btn-secondary md:hidden">
+                        Download CV
                     </a>
                 </div>
             </div>
@@ -172,10 +178,12 @@
                 <h2 class="section-heading">About Me</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div class="md:col-span-2 space-y-6 text-gray-700 dark:text-light-slate text-lg">
-                        <p>
+                        <!-- UPDATED: Added text-justify -->
+                        <p class="text-justify">
                             I am a highly motivated and research-oriented final-year BS Computer Science student at COMSATS University, with an exceptional academic record (CGPA: 3.71/4.0). My comprehensive background in software development, system design, and applied machine learning is demonstrated through multiple end-to-end projects.
                         </p>
-                        <p>
+                        <!-- UPDATED: Added text-justify -->
+                        <p class="text-justify">
                             I am a dedicated problem-solver, passionate about contributing to cutting-edge research in Artificial Intelligence and Cybersecurity. I am also actively engaged in my university's technical community and as a social activist.
                         </p>
                     </div>
@@ -558,7 +566,7 @@
                 <h2 class="section-heading">References</h2>
                 <p class="text-lg text-gray-700 dark:text-light-slate">
                     Professional and academic references are available upon request.
-                </pre>
+                </p>
             </div>
         </section>
 
@@ -570,7 +578,6 @@
                     I'm actively seeking MPhil/PHD opportunities and am always open to discussing research.
                 </p>
                 
-            
                 <form id="contact-form" action="https://formspree.io/f/mgvrvwrz" method="POST" class="space-y-6">
                     <div>
                         <label for="name" class="form-label">Name</label>
@@ -708,11 +715,11 @@
                 </p>
                 <h4 class="modal-subtitle">My Process</h4>
                 <p class="modal-description">
-                    1.  Data Cleaning:** Handled missing values, removed duplicates, and corrected data types using Pandas.
-                    2.  Visualization:** Used Matplotlib and Seaborn to create histograms, scatter plots, and heatmaps to understand correlations between features like age, income, and spending.
-                    3.  Modeling: Implemented and compared several ML models:
-                         Supervised: Decision Trees, K-Nearest Neighbors (KNN), Naive Bayes, and Linear Regression to predict spending habits.
-                         Unsupervised: K-Means Clustering to segment customers into distinct groups (e.g., "high-value," "budget-conscious").
+                    1.  **Data Cleaning:** Handled missing values, removed duplicates, and corrected data types using Pandas.
+                    2.  **Visualization:** Used Matplotlib and Seaborn to create histograms, scatter plots, and heatmaps to understand correlations between features like age, income, and spending.
+                    3.  **Modeling:** Implemented and compared several ML models:
+                        * **Supervised:** Decision Trees, K-Nearest Neighbors (KNN), Naive Bayes, and Linear Regression to predict spending habits.
+                        * **Unsupervised:** K-Means Clustering to segment customers into distinct groups (e.g., "high-value," "budget-conscious").
                 </p>
                 <h4 class="modal-subtitle mt-6">Technologies Used</h4>
                 <div class="flex flex-wrap gap-2">
