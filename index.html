@@ -163,11 +163,11 @@
                 <!-- UPDATED: Combined the broken <p> and <h2> tags into one element -->
                 <!-- This fixes the layout break and height issue on mobile -->
                 <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-600 dark:text-slate mb-6 h-20 md:h-12">
-                    And I'm a <br class="md:hidden"> 
+                    And I'm a <br class="md:hidden"> <br>
                     <span id="typed-text" class="text-cyan" ></span>
                 </h2>
                 
-                <p class="text-lg text-gray-600 dark:text-light-slate mb-10 mt-2 max-w-prose text-justify tracking-normal">
+                <p class="text-lg text-gray-600 dark:text-light-slate mb-10 mt-10 max-w-prose text-justify">
                     I'm a final-year Computer Science student with a passion for building secure and intelligent systems. My academic journey (3.71 CGPA) has been focused on the intersection of <span class="font-bold text-cyan">Artificial Intelligence</span> and <span class="font-bold text-cyan">Cybersecurity</span>, and I'm currently seeking MPhil/PHD opportunities to contribute to cutting-edge research.
                 </p>
 
@@ -188,27 +188,24 @@
                 </div>
 
                 <!-- Hero Buttons -->
-               <div class="flex flex-wrap gap-4 justify-center sm:justify-start">
-                        <a href="#contact" class="hero-btn-primary">
-                            Contact Me
-                        </a>
-                    
-                        <a href="#projects" class="hero-btn-secondary hidden md:inline-flex">
-                            My Projects
-                        </a>
-                    
-                        <a href="https://drive.google.com/uc?export=download&id=17rgEYdWvNLXtRj2x_iJbhIGrTVbYWxPp" 
-                           download="Mohsin_Haider_CV.pdf" 
-                           class="hero-btn-secondary md:hidden">
-                            Download CV
-                        </a>
-                 </div>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#contact" class="hero-btn-primary">
+                        Contact Me
+                    </a>
+                    <a href="#projects" class="hero-btn-secondary hidden md:inline-flex">
+                        My Projects
+                    </a>
+                    <a href="https://drive.google.com/uc?export=download&id=17rgEYdWvNLXtRj2x_iJbhIGrTVbYWxPp" download="Mohsin_Haider_CV.pdf" class="hero-btn-secondary md:hidden">
+                        Download CV
+                    </a>
+                </div>
+            </div>
+            
         </div>
     </header>
   <main>
 
-
-
+      
 
       <section id="about" class="py-28 md:py-32 bg-gray-50 dark:bg-light-navy scroll-fade">
             <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -726,6 +723,7 @@
         
 
         <!-- ===== Contact Section ===== -->
+        <!-- ===== Contact Section ===== -->
       <section id="contact" class="py-28 md:py-32 bg-gray-50 dark:bg-light-navy scroll-fade">
             <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 class="section-heading">Get In Touch</h2>
@@ -749,8 +747,9 @@
                         <div class="flex flex-col sm:flex-row gap-2">
                             <input type="text" name="ai-prompt" id="ai-prompt" class="form-input" placeholder="e.g., 'Love your AI LogGuard project...'">
                             <!-- CORRECTED: This is the gradient button -->
-                            <button type="button" id="generate-message-btn" class="gradient-btn p-3 w-full sm:w-auto flex justify-center">
+                            <button type="button" id="hero-btn-primary" class="gradient-btn p-3 w-full sm:w-auto flex justify-center">
                                 <span class="button-text"><i data-feather="sparkles" class="w-5 h-5"></i></span>
+                                <span class="button-text">✨</span>
                                 <i data-feather="loader" class="button-loader animate-spin hidden w-5 h-5"></i>
                             </button>
                         </div>
@@ -772,8 +771,8 @@
                         </div>
                         <div class="text-center">
                             <!-- CORRECTED: This is also the gradient button -->
-                            <button type="submit" class="gradient-btn text-lg px-8 py-3 w-full sm:w-48 flex justify-center items-center">
-                                <span class="button">Send Message</span>
+                            <button type="submit" class="gradient-btn text-lg px-5 py-3 w-full sm:w-48  justify-center items-center">
+                                <span class="button-text">Send Message</span>
                                 <i data-feather="loader" class="button-loader animate-spin hidden ml-2"></i>
                             </button>
                         </div>
@@ -1295,5 +1294,6 @@
     <script src="script.js" defer></script>
 </body>
 </html>
+
 
 
