@@ -167,7 +167,7 @@
                     <span id="typed-text" class="text-cyan" ></span>
                 </h2>
                 
-                <p class="text-lg text-gray-600 dark:text-light-slate mb-10 mt-10 max-w-prose text-justify tracking-normal">
+                <p class="text-lg text-gray-600 dark:text-light-slate mb-10 mt-2 max-w-prose text-justify tracking-normal">
                     I'm a final-year Computer Science student with a passion for building secure and intelligent systems. My academic journey (3.71 CGPA) has been focused on the intersection of <span class="font-bold text-cyan">Artificial Intelligence</span> and <span class="font-bold text-cyan">Cybersecurity</span>, and I'm currently seeking MPhil/PHD opportunities to contribute to cutting-edge research.
                 </p>
 
@@ -188,19 +188,21 @@
                 </div>
 
                 <!-- Hero Buttons -->
-                <div class="flex flex-wrap gap-4">
-                    <a href="#contact" class="hero-btn-primary">
-                        Contact Me
-                    </a>
-                    <a href="#projects" class="hero-btn-secondary hidden md:inline-flex">
-                        My Projects
-                    </a>
-                    <a href="https://drive.google.com/uc?export=download&id=17rgEYdWvNLXtRj2x_iJbhIGrTVbYWxPp" download="Mohsin_Haider_CV.pdf" class="hero-btn-secondary md:hidden">
-                        Download CV
-                    </a>
-                </div>
-            </div>
-            
+               <div class="flex flex-wrap gap-4 justify-center sm:justify-start">
+                        <a href="#contact" class="hero-btn-primary">
+                            Contact Me
+                        </a>
+                    
+                        <a href="#projects" class="hero-btn-secondary hidden md:inline-flex">
+                            My Projects
+                        </a>
+                    
+                        <a href="https://drive.google.com/uc?export=download&id=17rgEYdWvNLXtRj2x_iJbhIGrTVbYWxPp" 
+                           download="Mohsin_Haider_CV.pdf" 
+                           class="hero-btn-secondary md:hidden">
+                            Download CV
+                        </a>
+                 </div>
         </div>
     </header>
   <main>
@@ -214,7 +216,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-5 gap-12">
                     
                     <!-- UPDATED: Removed text-justify -->
-                    <div class="md:col-span-3 space-y-6 text-gray-700 dark:text-light-slate text-lg ">
+                    <div class="md:col-span-3 space-y-6 text-gray-700 dark:text-light-slate text-lg text-justify tracking-normal">
                         <p>
                             My journey in tech began with a simple curiosity for how things work, which quickly evolved into a deep-seated passion for problem-solving. At COMSATS University, I've channeled this passion into the twin fields of <span class="font-bold text-cyan">Artificial Intelligence</span> and <span class="font-bold text-cyan">Cybersecurity</span>.
                         </p>
@@ -278,15 +280,21 @@
                             <span class="tag-gray">Scikit-learn</span>
                         </div>
                         
-                        <div class="flex flex-wrap gap-4">
-                            <button data-modal-target="modal-ai-logguard" class="hero-btn-primary">
+                        <div class="flex flex-col sm:flex-row sm:flex-wrap gap-4">
+                            <button 
+                                data-modal-target="modal-ai-logguard" 
+                                class="hero-btn-primary w-full sm:w-auto">
                                 View Case Study
                             </button>
-                            <a href="https://github.com/MohsinHaiderSultan" target="_blank" class="hero-btn-secondary">
+                            <a 
+                                href="https://github.com/MohsinHaiderSultan" 
+                                target="_blank" 
+                                class="hero-btn-secondary w-full sm:w-auto flex justify-center sm:justify-start">
                                 <i data-feather="github" class="w-4 h-4 mr-2"></i>
                                 View Code
                             </a>
                         </div>
+
                     </div>
 
                     <!-- Project Image (Right) -->
@@ -456,13 +464,14 @@
                             <i data-feather="cpu" class="skill-icon"></i>
                             <h3 class="skill-title">AI/ML & Data</h3>
                         </div>
-                        <div class="flex flex-wrap gap-3">
+                        <div class="flex flex-wrap gap-3 justify-center md:justify-start mt-4">
                             <span class="skill-badge">Python</span>
                             <span class="skill-badge">Scikit-learn</span>
                             <span class="skill-badge">Pandas</span>
                             <span class="skill-badge">NumPy</span>
                             <span class="skill-badge">Matplotlib</span>
                         </div>
+
                     </div>
                     
                     <div class="skill-card">
@@ -490,9 +499,9 @@
                         <div class="flex flex-wrap gap-3">
                             <span class="skill-badge">Android Studio</span>
                             <span class="skill-badge">Firebase</span>
+                             <span class="skill-badge">Git</span>
                             <span class="skill-badge">.NET (WinForms)</span>
-                            <span class="skill-badge">OpenMP</span>
-                            <span class="skill-badge">Git</span>
+                            <span class="skill-badge">OpenMP</span>                
                             <span class="skill-badge">Linux CLI</span>
                         </div>
                     </div>
@@ -764,7 +773,7 @@
                         <div class="text-center">
                             <!-- CORRECTED: This is also the gradient button -->
                             <button type="submit" class="gradient-btn text-lg px-8 py-3 w-full sm:w-48 flex justify-center items-center">
-                                <span class="button-text">Send Message</span>
+                                <span class="button">Send Message</span>
                                 <i data-feather="loader" class="button-loader animate-spin hidden ml-2"></i>
                             </button>
                         </div>
@@ -1286,4 +1295,5 @@
     <script src="script.js" defer></script>
 </body>
 </html>
+
 
