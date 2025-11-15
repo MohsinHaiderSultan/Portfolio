@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
             strings: [
                         "Computer Science Student",
                         "Cybersecurity Analyst",
-                        "AI & ML Developer",
+                        "AI and ML Developer",
                         "Web Developer",
                         "Ethical Hacker",
                         "UI/UX Designer"
@@ -463,3 +463,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
