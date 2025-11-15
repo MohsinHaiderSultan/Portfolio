@@ -70,14 +70,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // ===========================
     if (typeof Typed !== 'undefined') {
         new Typed('#typed-text', {
-          strings: [
-                  "Computer Science Student",
-                  "Cybersecurity Analyst",
-                  "AI & ML Developer",
-                  "Web Developer",
-                  "Ethical Hacker",
-                  "UI/UX Designer"
-                ];
+            strings: [
+                        "Computer Science Student",
+                        "Cybersecurity Analyst",
+                        "AI & ML Developer",
+                        "Web Developer",
+                        "Ethical Hacker",
+                        "UI/UX Designer"
+                        ],
             typeSpeed: 50,
             backSpeed: 30,
             backDelay: 2000,
