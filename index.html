@@ -184,7 +184,34 @@
                 I'm currently seeking MPhil/PhD research opportunities.
             </p>
 
-            <!-- Mobile Social Bar -->
+            <!-- Hero Buttons -->
+            <div class="flex flex-wrap gap-4 mt-6">
+                
+                <!-- Contact Me -->
+                <a href="#contact"
+                   class="hero-btn-primary text-center flex items-center gap-2">
+                    Contact Me 
+                    <i data-feather=" send" class="w-4 h-4"></i>
+                </a>
+
+                <!-- Projects Button (Desktop only) -->
+                <a href="#projects"
+                   class="hero-btn-secondary hidden md:flex items-center gap-2">
+                    <i data-feather="folder" class="w-4 h-4"></i>
+                    My Projects
+                </a>
+
+                <!-- CV Download (Mobile) -->
+                <a href="https://drive.google.com/uc?export=download&id=17rgEYdWvNLXtRj2x_iJbhIGrTVbYWxPp"
+                   download="Mohsin_Haider_CV.pdf"
+                   class="hero-btn-secondary md:hidden flex items-center gap-2">
+                    <i data-feather="download" class="w-4 h-4"></i>
+                    Download CV
+                </a>
+
+            </div>
+
+               <!-- Mobile Social Bar -->
             <div id="mobile-social-bar"
                  class="md:hidden flex items-center justify-center gap-6 py-5 backdrop-blur-md bg-white/40 dark:bg-navy/40 rounded-2xl shadow-md border border-white/20 dark:border-white/10 animate-fadeIn">
 
@@ -209,33 +236,6 @@
                    target="_blank"
                    class="social-link hover:text-green-600 transition-colors">
                     <i data-feather="message-circle" class="w-7 h-7"></i>
-                </a>
-
-            </div>
-
-            <!-- Hero Buttons -->
-            <div class="flex flex-wrap gap-4 mt-6">
-                
-                <!-- Contact Me -->
-                <a href="#contact"
-                   class="hero-btn-primary text-center flex items-center gap-2">
-                    Contact Me
-                    <i data-feather="send" class="w-4 h-4"></i>
-                </a>
-
-                <!-- Projects Button (Desktop only) -->
-                <a href="#projects"
-                   class="hero-btn-secondary hidden md:flex items-center gap-2">
-                    <i data-feather="folder" class="w-4 h-4"></i>
-                    My Projects
-                </a>
-
-                <!-- CV Download (Mobile) -->
-                <a href="https://drive.google.com/uc?export=download&id=17rgEYdWvNLXtRj2x_iJbhIGrTVbYWxPp"
-                   download="Mohsin_Haider_CV.pdf"
-                   class="hero-btn-secondary md:hidden flex items-center gap-2">
-                    <i data-feather="download" class="w-4 h-4"></i>
-                    Download CV
                 </a>
 
             </div>
@@ -326,6 +326,7 @@
                         
                         <div class="flex flex-wrap gap-4">
                             <button data-modal-target="modal-ai-logguard" class="hero-btn-primary">
+                                <i data-feather="book-open" class="cert-icon"></i>
                                 Case Study
                             </button>
                             <a href="https://github.com/MohsinHaiderSultan" target="_blank" class="hero-btn-secondary">
@@ -1609,5 +1610,6 @@
 </body>
 
 </html>
+
 
 
