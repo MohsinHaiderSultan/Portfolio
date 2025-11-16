@@ -534,7 +534,7 @@ body {
 /* --- UPDATED: Fixed Social Bar --- */
 #social-bar {
     position: fixed;
-    top: 50%; /* Vertically center */
+    top: 30%; /* Vertically center */
     transform: translateY(-50%); /* Vertically center */
     left: 1.5rem; /* left-6 */
     z-index: 30;
@@ -551,23 +551,11 @@ body {
     border: 2px solid rgb(0 209 250);
 }
 .dark #social-bar {
-    background-color: rgba(17, 34, 64, 0.8); /* dark:bg-light-navy/80 */
+    background-color: rgba(9, 41, 83, 0.8); /* dark:bg-light-navy/80 */
 }
 
-.social-bar-link {
-    color: rgb(0 209 255); /* text-gray-600 */
-    transition: all 0.3s;
-}
-.dark .social-bar-link {
-    color: rgb(0 209 255); /* dark:text-light-slate */
-}
-.social-bar-link:hover {
-    color: rgb(48, 60, 63); 
-    transform: translateY(-3px);
-}
-.dark .social-bar-link:hover {
-    color: rgb(54, 71, 75); 
-}
+
+
 @media (max-width: 1023.98px) {
     #social-bar {
         display: none;
@@ -577,16 +565,14 @@ body {
 /* --- NEW: Mobile Social Bar (in Hero) --- */
 #mobile-social-bar {
     display: flex;
-    align-items: center;
     justify-content: center;
     gap: 1.5rem; /* space-x-6 */
-    margin-bottom: 2.5rem; /* mb-10 */
-    
-    /* NEW: Bar styling */
-    background-color: rgb(249 250 251); /* bg-gray-50 */
-    border: 2px solid rgb(0 209 250);
+    margin-bottom: .5rem; /* mb-10 */
+    background-color: rgb(255, 255, 255); /* bg-gray-50 */
     border-radius: 0.5rem; /* rounded-lg */
-    padding: 1rem; /* p-4 */
+    padding: 0.5rem; /* py-3 px-4 */
+    border: 2px solid rgb(0 209 250);
+
 }
 .dark #mobile-social-bar {
     background-color: rgb(17 34 64); /* dark:bg-light-navy */
@@ -594,7 +580,7 @@ body {
 }
 /* This class is now used by both mobile and desktop */
 #mobile-social-bar .hero-social-link {
-    color: rgb(75 85 99);
+    color: rgb(117, 123, 132);
 }
 .dark #mobile-social-bar .hero-social-link {
     color: rgb(168 178 209); /* dark:text-light-slate */
@@ -613,7 +599,13 @@ body {
     }
 }
 
-
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+.animate-bob {
+  animation: bob 3s ease-in-out infinite;
+}
 /* --- Hero Typing Animation --- */
 .typed-cursor {
     font-size: 1.5rem; /* 2xl */
@@ -1379,5 +1371,6 @@ body {
 .hidden {
     display: none;
 }
+
 
 
