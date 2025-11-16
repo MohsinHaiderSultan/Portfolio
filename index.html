@@ -186,22 +186,19 @@
 
             <!-- Hero Buttons -->
             <div class="flex flex-wrap gap-4 mt-6">
-                
-                <!-- Contact Me -->
+
                 <a href="#contact"
                    class="hero-btn-primary text-center flex items-center gap-2">
                     Contact Me 
-                    <i data-feather=" send" class="w-4 h-4"></i>
+                    <i data-feather="send" class="w-4 h-4"></i>
                 </a>
 
-                <!-- Projects Button (Desktop only) -->
                 <a href="#projects"
                    class="hero-btn-secondary hidden md:flex items-center gap-2">
                     <i data-feather="folder" class="w-4 h-4"></i>
                     My Projects
                 </a>
 
-                <!-- CV Download (Mobile) -->
                 <a href="https://drive.google.com/uc?export=download&id=17rgEYdWvNLXtRj2x_iJbhIGrTVbYWxPp"
                    download="Mohsin_Haider_CV.pdf"
                    class="hero-btn-secondary md:hidden flex items-center gap-2">
@@ -211,9 +208,9 @@
 
             </div>
 
-               <!-- Mobile Social Bar -->
+            <!-- Mobile Social Bar -->
             <div id="mobile-social-bar"
-                 class="md:hidden flex items-center justify-center gap-6 py-5 backdrop-blur-md bg-white/40 dark:bg-navy/40 rounded-2xl shadow-md border border-white/20 dark:border-white/10 animate-fadeIn">
+                class="md:hidden flex items-center justify-center gap-6 py-5 backdrop-blur-md bg-white/40 dark:bg-navy/40 rounded-2xl shadow-md border border-white/20 dark:border-white/10 animate-fadeIn">
 
                 <a href="https://linkedin.com/in/mohsin-haider-sultan-498b5b251"
                    target="_blank"
@@ -244,6 +241,7 @@
 
     </div>
 </header>
+
 
 
     <main>
@@ -324,16 +322,23 @@
                             <span class="tag-gray">Scikit-learn</span>
                         </div>
                         
-                        <div class="flex flex-wrap gap-4">
-                            <button data-modal-target="modal-ai-logguard" class="hero-btn-primary">
+                       <div class="flex flex-wrap gap-4 w-full">
+                            <!-- Case Study Button -->
+                            <button data-modal-target="modal-ai-logguard"
+                                    class="hero-btn-primary flex-1 flex items-center justify-center gap-2 min-w-[140px]">
                                 <i data-feather="book-open" class="cert-icon"></i>
                                 Case Study
                             </button>
-                            <a href="https://github.com/MohsinHaiderSultan" target="_blank" class="hero-btn-secondary">
-                                <i data-feather="github" class="w-4 h-4 mr-2"></i>
+                        
+                            <!-- View Code Button -->
+                            <a href="https://github.com/MohsinHaiderSultan"
+                               target="_blank"
+                               class="hero-btn-secondary flex-1 flex items-center justify-center gap-2 min-w-[140px]">
+                                <i data-feather="github" class="w-4 h-4"></i>
                                 View Code
                             </a>
                         </div>
+
                     </div>
 
                     <!-- Project Image (Right) -->
@@ -1610,6 +1615,7 @@
 </body>
 
 </html>
+
 
 
 
