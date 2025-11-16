@@ -137,81 +137,115 @@
         </div>
     </nav>
 
-    <!-- ===== Hero Section ===== -->
-    <header id="home" class="min-h-screen flex items-center bg-white dark:bg-navy relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+   <!-- ===== Hero Section ===== -->
+<header id="home" class="min-h-screen flex items-center bg-white dark:bg-navy relative overflow-hidden">
 
-            <!-- Left Side: 3D Profile Image -->
-            <div class="flex justify-center md:justify-start scroll-fade mt-12 md:mt-0">
-                <div id="profile-3d-wrap" class="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96">
-                    <div id="profile-card" class="w-full h-full rounded-full shadow-2xl image-glow-wrapper">
-                        <div class="image-glow-inner">
-                            <img src="profile.jpg" alt="Mohsin Haider"
-                                class="w-full h-full rounded-full object-cover border-4 border-cyan/50">
-                        </div>
+    <!-- Soft background glow -->
+    <div class="absolute inset-0 pointer-events-none">
+        <div class="absolute top-20 left-10 w-72 h-72 bg-cyan/20 dark:bg-cyan/10 blur-3xl rounded-full"></div>
+        <div class="absolute bottom-10 right-10 w-72 h-72 bg-purple-400/10 blur-3xl rounded-full"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
+
+        <!-- Left: 3D Profile -->
+        <div class="flex justify-center md:justify-start scroll-fade mt-16 md:mt-0 fade-in-left">
+            <div id="profile-3d-wrap" class="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 relative">
+                <div class="absolute inset-0 bg-gradient-to-br from-cyan/20 to-purple-400/10 rounded-full blur-xl"></div>
+                <div id="profile-card"
+                     class="w-full h-full rounded-full shadow-2xl image-glow-wrapper hover:scale-[1.03] transition-all duration-500">
+                    <div class="image-glow-inner">
+                        <img src="profile.jpg" alt="Mohsin Haider"
+                             class="w-full h-full rounded-full object-cover border-4 border-cyan/50 shadow-lg">
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Right Side: Text Content -->
-            <div class="py-12 scroll-fade">
-                <span class="text-cyan font-semibold text-lg">Hello, I'm </span>
-                <h1
-                    class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 dark:text-lightest-slate mt-3 mb-4">
-                    Mohsin Haider.
-                </h1>
+        <!-- Right Side: Text -->
+        <div class="py-12 scroll-fade fade-in-right">
 
-                <h2 class="text-2xl sm:text-2xl lg:text-3xl font-extrabold text-gray-600 dark:text-slate h-20 md:h-12">
-                    And I'm a <br class="md:hidden">
-                    <span id="typed-text" class="text-cyan"></span>
-                </h2>
+            <span class="text-cyan font-semibold text-lg tracking-wide">Hello, I'm</span>
 
-                <p class="text-lg text-gray-600 dark:text-light-slate mb-10  max-w-prose text-justify tracking-normal">
-                    I'm a final-year Computer Science student with a passion for building secure and intelligent
-                    systems. My academic journey (3.71 CGPA) has been focused on the intersection of <span
-                        class="font-bold text-cyan">Artificial Intelligence</span> and <span
-                        class="font-bold text-cyan">Cybersecurity</span>, and I'm currently seeking MPhil/PHD
-                    opportunities to contribute to cutting-edge research.
-                </p>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-lightest-slate mt-3 mb-4 leading-tight">
+                Mohsin Haider.
+            </h1>
 
-                <div id="mobile-social-bar" class="md:hidden">
-                    <a href="https://linkedin.com/in/mohsin-haider-sultan-498b5b251" target="_blank"
-                        class="hero-social-link" aria-label="LinkedIn">
-                        <i data-feather="linkedin" class="w-6 h-6"></i>
-                    </a>
-                    <a href="https://github.com/MohsinHaiderSultan" target="_blank" class="hero-social-link"
-                        aria-label="GitHub">
-                        <i data-feather="github" class="w-6 h-6"></i>
-                    </a>
-                    <a href="mailto:sp22-bcs136@students.cuisahiwal.edu.pk" class="hero-social-link" aria-label="Email">
-                        <i data-feather="mail" class="w-6 h-6"></i>
-                    </a>
-                    <a href="https://wa.me/923109366396" target="_blank" class="hero-social-link"
-                        aria-label="Chat on WhatsApp">
-                        <i data-feather="message-circle" class="w-6 h-6"></i>
-                    </a>
-                </div>
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-600 dark:text-slate mb-4 h-20 md:h-12">
+                And I'm a <br class="md:hidden">
+                <span id="typed-text" class="text-cyan"></span>
+            </h2>
 
-                <!-- Hero Buttons -->
-                <div class="flex flex-wrap gap-4 justify-start w-full sm:justify-start">
-                    <a href="#contact" class="hero-btn-primary text-center sm:text-left w-full sm:w-auto">
-                        Contact Me
-                    </a>
-                    <a href="#projects"
-                        class="hero-btn-secondary hidden md:inline-flex text-center sm:text-left w-full sm:w-auto">
-                        My Projects
-                    </a>
-                    <a href="https://drive.google.com/uc?export=download&id=17rgEYdWvNLXtRj2x_iJbhIGrTVbYWxPp"
-                        download="Mohsin_Haider_CV.pdf"
-                        class="hero-btn-secondary md:hidden text-center sm:text-left w-full sm:w-auto">
-                        Download CV
-                    </a>
-                </div>
+            <p class="text-lg text-gray-600 dark:text-light-slate mb-10 max-w-prose text-justify leading-relaxed">
+                I'm a final-year Computer Science student (CGPA <span class="font-bold text-cyan">3.71</span>) with a passion for
+                secure and intelligent systems. My academic journey focuses on the intersection of 
+                <span class="font-bold text-cyan">Artificial Intelligence</span> and 
+                <span class="font-bold text-cyan">Cybersecurity</span>.
+                I'm currently seeking MPhil/PhD research opportunities.
+            </p>
+
+            <!-- Mobile Social Bar -->
+            <div id="mobile-social-bar"
+                 class="md:hidden flex items-center justify-center gap-6 py-5 backdrop-blur-md bg-white/40 dark:bg-navy/40 rounded-2xl shadow-md border border-white/20 dark:border-white/10 animate-fadeIn">
+
+                <a href="https://linkedin.com/in/mohsin-haider-sultan-498b5b251"
+                   target="_blank"
+                   class="social-link hover:text-blue-600 transition-colors">
+                    <i data-feather="linkedin" class="w-7 h-7"></i>
+                </a>
+
+                <a href="https://github.com/MohsinHaiderSultan"
+                   target="_blank"
+                   class="social-link hover:text-gray-900 dark:hover:text-white transition-colors">
+                    <i data-feather="github" class="w-7 h-7"></i>
+                </a>
+
+                <a href="mailto:sp22-bcs136@students.cuisahiwal.edu.pk"
+                   class="social-link hover:text-red-600 transition-colors">
+                    <i data-feather="mail" class="w-7 h-7"></i>
+                </a>
+
+                <a href="https://wa.me/923109366396"
+                   target="_blank"
+                   class="social-link hover:text-green-600 transition-colors">
+                    <i data-feather="message-circle" class="w-7 h-7"></i>
+                </a>
+
+            </div>
+
+            <!-- Hero Buttons -->
+            <div class="flex flex-wrap gap-4 mt-6">
+                
+                <!-- Contact Me -->
+                <a href="#contact"
+                   class="hero-btn-primary text-center flex items-center gap-2">
+                    Contact Me
+                    <i data-feather="send" class="w-4 h-4"></i>
+                    Contact Me
+                </a>
+
+                <!-- Projects Button (Desktop only) -->
+                <a href="#projects"
+                   class="hero-btn-secondary hidden md:flex items-center gap-2">
+                    <i data-feather="folder" class="w-4 h-4"></i>
+                    My Projects
+                </a>
+
+                <!-- CV Download (Mobile) -->
+                <a href="https://drive.google.com/uc?export=download&id=17rgEYdWvNLXtRj2x_iJbhIGrTVbYWxPp"
+                   download="Mohsin_Haider_CV.pdf"
+                   class="hero-btn-secondary md:hidden flex items-center gap-2">
+                    <i data-feather="download" class="w-4 h-4"></i>
+                    Download CV
+                </a>
+
             </div>
 
         </div>
 
-    </header>
+    </div>
+</header>
+
 
     <main>
         <!-- ===== About Me Section ===== -->
@@ -266,31 +300,31 @@
         </section>
 
         <!-- ===== Featured Project Section ===== -->
-        <section id="featured-project" class="py-28 md:py-32 bg-white dark:bg-navy scroll-fade">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="featured-project" class="py-24 md:py-32 bg-white dark:bg-navy scroll-fade">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 class="section-heading">Featured Project</h2>
-
+            </div>
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
                 <div class="featured-card-horizontal">
-
+                    
                     <!-- Text Content (Left) -->
                     <div class="featured-card-horizontal-content">
                         <h3 class="text-3xl font-extrabold text-gray-900 dark:text-lightest-slate mb-1">
                             AI LogGuard
                         </h3>
                         <span class="text-cyan font-semibold block mb-4">Final Year Project</span>
-
+                        
                         <p class="text-lg text-gray-700 dark:text-light-slate text-justify mb-6">
-                            A real-time log analysis tool to detect malicious activities using both supervised (known
-                            patterns) and unsupervised (anomaly detection) machine learning techniques.
+                            A real-time log analysis tool to detect malicious activities using both supervised (known patterns) and unsupervised (anomaly detection) machine learning techniques.
                         </p>
-
+                        
                         <div class="flex flex-wrap gap-2 mb-6">
                             <span class="tag-cyan">AI/ML</span>
                             <span class="tag-cyan">Cybersecurity</span>
                             <span class="tag-gray">Python</span>
                             <span class="tag-gray">Scikit-learn</span>
                         </div>
-
+                        
                         <div class="flex flex-wrap gap-4">
                             <button data-modal-target="modal-ai-logguard" class="hero-btn-primary">
                                 View Case Study
@@ -304,8 +338,7 @@
 
                     <!-- Project Image (Right) -->
                     <div class="featured-image-container">
-                        <img src="https://image-optimizer.cyberriskalliance.com/unsafe/1920x0/https://files.cyberriskalliance.com/wp-content/uploads/2025/05/050625_ai_agents.jpg"
-                            alt="AI LogGuard Project" class="featured-image">
+                        <img src="https://image-optimizer.cyberriskalliance.com/unsafe/1920x0/https://files.cyberriskalliance.com/wp-content/uploads/2025/05/050625_ai_agents.jpg" alt="AI LogGuard Project" class="featured-image">
                         <button data-modal-target="modal-ai-logguard" class="featured-image-overlay">
                             <i data-feather="eye" class="w-12 h-12"></i>
                         </button>
@@ -314,7 +347,6 @@
                 </div>
             </div>
         </section>
-
 
         <!-- ===== Projects Section ===== -->
         <section id="projects" class="py-24 md:py-32 bg-gray-50 dark:bg-light-navy scroll-fade">
@@ -493,11 +525,15 @@
 
 
         <!-- ===== Skills Section ===== -->
-        <section id="skills" class="py-28 md:py-32 bg-white dark:bg-navy scroll-fade">
+        <section id="skills" class="py-24 md:py-32 bg-white dark:bg-navy scroll-fade">
+            <!-- NEW: Heading Wrapper -->
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 class="section-heading">Technical Skills</h2>
+            </div>
+            <!-- NEW: Content Wrapper -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
+                    
                     <div class="skill-card">
                         <div class="flex items-center gap-4 mb-6">
                             <i data-feather="cpu" class="skill-icon"></i>
@@ -512,37 +548,41 @@
                         </div>
 
                     </div>
-
+                    
                     <div class="skill-card">
                         <div class="flex items-center gap-4 mb-6">
                             <i data-feather="code" class="skill-icon"></i>
                             <h3 class="skill-title">Languages & Web</h3>
                         </div>
-                        <div class="flex flex-wrap gap-3">
+                        <div class="flex flex-wrap gap-3 justify-center md:justify-start mt-4">
+                               <span class="skill-badge">Pyrhon</span>
                             <span class="skill-badge">C++</span>
                             <span class="skill-badge">C</span>
-                            <span class="skill-badge">C#</span>
-                            <span class="skill-badge">SQL</span>
                             <span class="skill-badge">Bash Scripting</span>
+                            <span class="skill-badge">SQL</span>
                             <span class="skill-badge">HTML/CSS</span>
                             <span class="skill-badge">JavaScript</span>
                             <span class="skill-badge">PHP</span>
+                         
+                            <span class="skill-badge">C#</span>
                         </div>
+
                     </div>
 
                     <div class="skill-card">
-                        <div class="flex items-center gap-4 mb-6">
+                         <div class="flex items-center gap-4 mb-6">
                             <i data-feather="tool" class="skill-icon"></i>
                             <h3 class="skill-title">Frameworks & Tools</h3>
                         </div>
-                        <div class="flex flex-wrap gap-3">
+                        <div class="flex flex-wrap gap-3 justify-center md:justify-start mt-4">
                             <span class="skill-badge">Android Studio</span>
                             <span class="skill-badge">Firebase</span>
+                            <span class="skill-badge">OpenMP</span>
                             <span class="skill-badge">Git</span>
                             <span class="skill-badge">.NET (WinForms)</span>
-                            <span class="skill-badge">OpenMP</span>
                             <span class="skill-badge">Linux CLI</span>
                         </div>
+
                     </div>
 
                 </div>
@@ -1570,3 +1610,4 @@
 </body>
 
 </html>
+
