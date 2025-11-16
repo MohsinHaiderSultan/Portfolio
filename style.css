@@ -275,6 +275,18 @@ body {
     opacity: 1;
 }
 
+.featured-card-horizontal-content .button-row {
+    display: flex;
+    flex-wrap: nowrap;       /* prevents wrapping */
+    gap: 0.75rem;
+}
+
+.featured-card-horizontal-content .button-row a,
+.featured-card-horizontal-content .button-row button {
+    white-space: nowrap;     /* prevent text from breaking */
+    flex-shrink: 0;          /* avoid shrinking */
+}
+
 /* --- UPDATED: Project Cards --- */
 .project-card {
     background-color: rgb(255 255 255); /* bg-white */
@@ -1367,4 +1379,5 @@ body {
 .hidden {
     display: none;
 }
+
 
