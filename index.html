@@ -163,7 +163,7 @@
         </div>
 
         <!-- Right Side: Text -->
-        <div class="py-12 scroll-fade fade-in-right">
+        <div class="py-8 scroll-fade fade-in-right">
 
             <span class="text-cyan font-semibold text-lg tracking-wide">Hello, I'm</span>
 
@@ -185,65 +185,81 @@
 
    <!-- Hero Buttons -->
             <div class="flex flex-wrap gap-3 mt-3 mb-8 justify-center md:justify-start w-full">
+                
+                    <!-- Contact Me -->
+                    <a href="#contact" 
+                       class="hero-btn-primary flex-1 sm:flex-none flex items-center justify-center min-w-[140px] min-h-[50px] px-4 py-3 text-[13px] sm:text-sm gap-1 sm:gap-2 transition-all duration-300">
+                        <i data-feather="send" class="w-4 h-4"></i>
+                        Contact Me
+                    </a>
+                
+                    <!-- My Projects (desktop only) -->
+                    <a href="#projects" 
+                       class="hero-btn-secondary hidden md:flex flex-1 sm:flex-none items-center justify-center min-w-[140px] min-h-[50px] px-4 py-3 text-[13px] sm:text-sm gap-1 sm:gap-2 transition-all duration-300">
+                        <i data-feather="folder" class="w-4 h-4"></i>
+                        My Projects
+                    </a>
+                
+                    <!-- Download CV (mobile only) -->
+                    <a href="https://drive.google.com/uc?export=download&id=17rgEYdWvNLXtRj2x_iJbhIGrTVbYWxPp" 
+                       download="Mohsin_Haider_CV.pdf"
+                       class="hero-btn-secondary md:hidden flex-1 sm:flex-none flex items-center justify-center min-w-[140px] min-h-[50px] px-4 py-3 text-[13px] sm:text-sm gap-1 sm:gap-2 transition-all duration-300">
+                        <i data-feather="download" class="w-4 h-4"></i>
+                        Download CV
+                    </a>
+                
+                </div>
+
+
+
+
+         
+<!-- Modern Floating Mobile Social Bar -->
+        
+            <div id="mobile-social-bar"
+                 class="md:hidden fixed bottom-6 left-1/2 transform -translate-x-1/2 flex items-center justify-center gap-6 p-4 backdrop-blur-lg bg-white/30 dark:bg-navy/30 rounded-full shadow-xl border border-white/20 dark:border-white/10 animate-fadeIn z-50 animate-bob">
             
-                <!-- Contact Me -->
-                <a href="#contact" 
-                   class="hero-btn-primary flex-1 sm:flex-none flex items-center justify-center min-w-[140px] px-3 py-2 text-[13px] sm:text-sm gap-1 sm:gap-2 transition-all duration-300">
-                    <i data-feather="send" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
-                    Contact Me
+                <!-- LinkedIn -->
+                <a href="https://linkedin.com/in/mohsin-haider-sultan-498b5b251"
+                   target="_blank"
+                   class="social-link flex items-center justify-center w-14 h-14 rounded-full bg-white/20 dark:bg-navy/20 shadow-md text-blue-600 hover:shadow-[0_0_20px_#0A66C2] transform hover:-translate-y-1 hover:scale-110 transition-all duration-300">
+                    <i data-feather="linkedin" class="w-7 h-7"></i>
                 </a>
             
-                <!-- My Projects (desktop only) -->
-                <a href="#projects" 
-                   class="hero-btn-secondary hidden md:flex flex-1 sm:flex-none items-center justify-center min-w-[140px] px-3 py-2 text-[13px] sm:text-sm gap-1 sm:gap-2 transition-all duration-300">
-                    <i data-feather="folder" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
-                    My Projects
+                <!-- GitHub -->
+                <a href="https://github.com/MohsinHaiderSultan"
+                   target="_blank"
+                   class="social-link flex items-center justify-center w-14 h-14 rounded-full bg-white/20 dark:bg-navy/20 shadow-md text-gray-900 dark:text-white hover:shadow-[0_0_20px_#171515] transform hover:-translate-y-1 hover:scale-110 transition-all duration-300">
+                    <i data-feather="github" class="w-7 h-7"></i>
                 </a>
             
-                <!-- Download CV (mobile only) -->
-                <a href="https://drive.google.com/uc?export=download&id=17rgEYdWvNLXtRj2x_iJbhIGrTVbYWxPp" 
-                   download="Mohsin_Haider_CV.pdf"
-                   class="hero-btn-secondary md:hidden flex-1 sm:flex-none flex items-center justify-center min-w-[140px] px-3 py-2 text-[13px] sm:text-sm gap-1 sm:gap-2 transition-all duration-300">
-                    <i data-feather="download" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
-                    Download CV
+                <!-- Email -->
+                <a href="mailto:sp22-bcs136@students.cuisahiwal.edu.pk"
+                   class="social-link flex items-center justify-center w-14 h-14 rounded-full bg-white/20 dark:bg-navy/20 shadow-md text-red-600 hover:shadow-[0_0_20px_#E63946] transform hover:-translate-y-1 hover:scale-110 transition-all duration-300">
+                    <i data-feather="mail" class="w-7 h-7"></i>
+                </a>
+            
+                <!-- WhatsApp -->
+                <a href="https://wa.me/923109366396"
+                   target="_blank"
+                   class="social-link flex items-center justify-center w-14 h-14 rounded-full bg-white/20 dark:bg-navy/20 shadow-md text-green-500 hover:shadow-[0_0_20px_#25D366] transform hover:-translate-y-1 hover:scale-110 transition-all duration-300">
+                    <i data-feather="message-circle" class="w-7 h-7"></i>
                 </a>
             
             </div>
+            
+            <!-- Floating Animation CSS (Tailwind + custom) -->
+            <style>
+            @keyframes bob {
+              0%, 100% { transform: translateX(-50%) translateY(0); }
+              50% { transform: translateX(-50%) translateY(-5px); }
+            }
+            .animate-bob {
+              animation: bob 3s ease-in-out infinite;
+            }
+            </style>
 
 
-
-          <!-- Mobile Social Bar with Neon Glow -->
-<div id="mobile-social-bar"
-     class="md:hidden flex items-center justify-center gap-6 py-4 backdrop-blur-md bg-white/20 dark:bg-navy/20 rounded-3xl shadow-lg border border-white/20 dark:border-white/10 animate-fadeIn">
-
-    <!-- LinkedIn -->
-    <a href="https://linkedin.com/in/mohsin-haider-sultan-498b5b251"
-       target="_blank"
-       class="social-link flex items-center justify-center w-12 h-12 rounded-full bg-white/10 dark:bg-navy/10 shadow-md hover:text-white hover:shadow-[0_0_15px_#0A66C2] transform hover:scale-110 transition-all duration-300">
-        <i data-feather="linkedin" class="w-6 h-6"></i>
-    </a>
-
-    <!-- GitHub -->
-    <a href="https://github.com/MohsinHaiderSultan"
-       target="_blank"
-       class="social-link flex items-center justify-center w-12 h-12 rounded-full bg-white/10 dark:bg-navy/10 shadow-md hover:text-white hover:shadow-[0_0_15px_#171515] transform hover:scale-110 transition-all duration-300">
-        <i data-feather="github" class="w-6 h-6"></i>
-    </a>
-
-    <!-- Email -->
-    <a href="mailto:sp22-bcs136@students.cuisahiwal.edu.pk"
-       class="social-link flex items-center justify-center w-12 h-12 rounded-full bg-white/10 dark:bg-navy/10 shadow-md hover:text-white hover:shadow-[0_0_15px_#E63946] transform hover:scale-110 transition-all duration-300">
-        <i data-feather="mail" class="w-6 h-6"></i>
-    </a>
-
-    <!-- WhatsApp -->
-    <a href="https://wa.me/923109366396"
-       target="_blank"
-       class="social-link flex items-center justify-center w-12 h-12 rounded-full bg-white/10 dark:bg-navy/10 shadow-md hover:text-white hover:shadow-[0_0_15px_#25D366] transform hover:scale-110 transition-all duration-300">
-        <i data-feather="message-circle" class="w-6 h-6"></i>
-    </a>
-
-</div>
 
 
         </div>
@@ -1625,6 +1641,7 @@
 </body>
 
 </html>
+
 
 
 
