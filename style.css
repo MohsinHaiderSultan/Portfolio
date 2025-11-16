@@ -192,6 +192,7 @@ body {
     overflow: hidden;
     transform: translateY(0);
     transition: all 0.3s ease-in-out;
+    border: 2px solid rgb(0 209 255);
 }
 .dark .featured-card-horizontal {
     background-color: rgb(17 34 64); /* dark:bg-light-navy */
@@ -1366,3 +1367,4 @@ body {
 .hidden {
     display: none;
 }
+
