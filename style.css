@@ -192,8 +192,6 @@ body {
     overflow: hidden;
     transform: translateY(0);
     transition: all 0.3s ease-in-out;
-    border: 2px solid rgb(0 209 250);
-
 }
 .dark .featured-card-horizontal {
     background-color: rgb(17 34 64); /* dark:bg-light-navy */
@@ -622,7 +620,6 @@ body {
     }
 }
 
-
 /* --- Project Filter Buttons --- */
 .filter-btn {
     padding-left: 1rem; /* px-4 */
@@ -659,8 +656,6 @@ body {
     background-color: rgb(0 209 255); /* dark:bg-cyan */
     color: rgb(10 25 47); /* dark:text-navy */
 }
-
-
 
 /* --- Timeline --- */
 .timeline-container {
@@ -819,13 +814,11 @@ body {
     max-height: 500px; /* Animates to full height */
 }
 
-
-
-
 /* --- Certification Cards (List Items) --- */
 .cert-item {
     display: flex;
-    align-items: center;
+    /* UPDATED: Stack vertically on mobile */
+    flex-direction: column;
     background-color: rgb(255 255 255); /* bg-white */
     padding: 1.5rem; /* p-6 */
     border-radius: 0.5rem; /* rounded-lg */
@@ -834,6 +827,13 @@ body {
     transform: translateY(0);
     text-decoration: none;
     border: 2px solid rgb(0, 209, 255);
+}
+/* UPDATED: On small screens and up, go horizontal */
+@media (min-width: 640px) {
+    .cert-item {
+        flex-direction: row;
+        align-items: center;
+    }
 }
 .dark .cert-item {
     background-color: rgb(17 34 64); /* dark:bg-light-navy */
@@ -844,6 +844,12 @@ body {
 }
 .dark .cert-item:hover {
     background-color: rgb(35 53 84); /* dark:hover:bg-lightest-navy */
+}
+/* NEW: Wrapper for top content */
+.cert-item-content {
+    display: flex;
+    align-items: center;
+    flex-grow: 1; /* Takes up available space */
 }
 .cert-icon-bg {
     flex-shrink: 0;
@@ -884,7 +890,7 @@ body {
     color: rgb(0 209 255); /* text-brand-600 */
 }
 .dark .cert-item:hover .cert-title {
-    color: rgb(47, 61, 63); /* dark:text-cyan */
+    color: rgb(0 209 255); /* dark:text-cyan */
 }
 .cert-issuer {
     font-size: 0.875rem; /* sm */
@@ -902,9 +908,23 @@ body {
     align-items: center;
     font-weight: 600; /* font-semibold */
     transition: all 0.3s ease-in-out;
-    margin-left: auto;
-    padding-left: 1rem;
     flex-shrink: 0;
+    
+    /* UPDATED: Mobile styles */
+    margin-top: 1rem; /* mt-4 */
+    padding-left: 0; /* pl-0 */
+    width: 100%;
+    justify-content: space-between;
+}
+/* UPDATED: Desktop styles */
+@media (min-width: 640px) {
+    .credential-link {
+        margin-top: 0;
+        padding-left: 1rem; /* sm:pl-4 */
+        width: auto;
+        justify-content: flex-end;
+        margin-left: auto; /* sm:ml-auto */
+    }
 }
 .dark .credential-link {
     color: rgb(168, 204, 209); /* dark:text-light-slate */
@@ -918,9 +938,6 @@ body {
 .dark .cert-item:hover .credential-link {
     color: rgb(0 209 255); /* dark:hover:text-cyan */
 }
-
-
-
 
 /* --- Achievement Card Styles --- */
 .achievement-card {
@@ -973,6 +990,33 @@ body {
 }
 .dark .achievement-description {
     color: rgb(168 178 209); /* dark:text-light-slate */
+}
+
+/* NEW: Style for inline links in cards */
+.credential-link-inline {
+    display: inline;
+    color: rgb(0 209 255);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+.credential-link-inline:hover {
+    color: rgba(0, 209, 255, 0.8);
+}
+
+
+/* NEW: Style for the quote inside the reference card */
+.reference-quote {
+    font-size: 0.875rem; /* sm */
+    line-height: 1.25rem;
+    color: rgb(75 85 99); /* text-gray-600 */
+    font-style: italic;
+    margin-top: 0.75rem; /* mt-3 */
+    border-left: 3px solid rgb(0, 209, 255); /* border-l-4 border-cyan */
+    padding-left: 0.75rem; /* pl-3 */
+}
+.dark .reference-quote {
+    color: rgb(136 146 176); /* dark:text-slate */
 }
 
 /* --- Project Modals --- */
@@ -1070,6 +1114,14 @@ body {
 }
 .dark .modal-description {
     color: rgb(168 178 209); /* dark:text-light-slate */
+}
+/* NEW: Modal List Item Styles */
+.modal-list-title {
+    font-weight: 700; /* bold */
+    color: rgb(17 24 39); /* text-gray-900 */
+}
+.dark .modal-list-title {
+    color: rgb(230 241 255); /* dark:text-lightest-slate */
 }
 .modal-footer {
     display: flex;
@@ -1252,6 +1304,63 @@ body {
         transform: translateX(-50%) translateY(-5px);
     }
 }
+
+
+
+
+/* Scroll to Top Button */
+/* --- Scroll-To-Top Button --- */
+#scrollTopBtn {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: #0b0f19;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    /* neon aura */
+    box-shadow:
+        0 0 8px rgba(0, 255, 234, 0.6),
+        0 0 15px rgba(0, 255, 234, 0.4),
+        0 0 25px rgba(0, 255, 234, 0.2);
+
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    color: #00ffee;
+    z-index: 9999;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+}
+
+/* Show when scrolling */
+#scrollTopBtn.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Hover effect */
+#scrollTopBtn:hover {
+    background: #0f1526;
+    box-shadow:
+        0 0 12px rgba(0, 255, 234, 0.9),
+        0 0 20px rgba(0, 255, 234, 0.7),
+        0 0 35px rgba(0, 255, 234, 0.5),
+        0 0 50px rgba(0, 255, 234, 0.3);
+    transform: translateY(-4px);
+}
+
+
 
 /* Utility */
 .hidden {
