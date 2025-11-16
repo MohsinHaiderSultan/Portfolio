@@ -171,7 +171,7 @@
                 Mohsin Haider.
             </h1>
 
-            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-600 dark:text-slate mb-4 h-20 md:h-12">
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-600 dark:text-slate  h-20 md:h-12">
                 <span id="typed-text" class="text-cyan"></span>
             </h2>
 
@@ -184,28 +184,28 @@
             </p>
 
             <!-- Hero Buttons -->
-            <div class="flex flex-wrap gap-4 mt-3 mb-4">
+          <div class="flex flex-wrap gap-6 mt-3 mb-8 justify-center md:justify-start">
+    <!-- Contact Me -->
+    <a href="#contact" class="hero-btn-primary flex items-center gap-2">
+        <i data-feather="send" class="w-4 h-4"></i>
+        Contact Me 
+    </a>
 
-                <a href="#contact"
-                   class="hero-btn-primary text-center flex items-center gap-2">
-                    <i data-feather="send" class="w-4 h-4"></i>
-                    Contact Me 
-                </a>
+    <!-- My Projects (desktop only) -->
+    <a href="#projects" class="hero-btn-secondary hidden md:flex items-center gap-2">
+        <i data-feather="folder" class="w-4 h-4"></i>
+        My Projects
+    </a>
 
-                <a href="#projects"
-                   class="hero-btn-secondary hidden md:flex items-center gap-2">
-                    <i data-feather="folder" class="w-4 h-4"></i>
-                    My Projects
-                </a>
+    <!-- Download CV (mobile only) -->
+    <a href="https://drive.google.com/uc?export=download&id=17rgEYdWvNLXtRj2x_iJbhIGrTVbYWxPp" 
+       download="Mohsin_Haider_CV.pdf"
+       class="hero-btn-secondary md:hidden flex items-center gap-2">
+        <i data-feather="download" class="w-4 h-4"></i>
+        Download CV
+    </a>
+</div>
 
-                <a href="https://drive.google.com/uc?export=download&id=17rgEYdWvNLXtRj2x_iJbhIGrTVbYWxPp"
-                   download="Mohsin_Haider_CV.pdf"
-                   class="hero-btn-secondary md:hidden flex items-center gap-2">
-                    <i data-feather="download" class="w-4 h-4"></i>
-                    Download CV
-                </a>
-
-            </div>
 
             <!-- Mobile Social Bar -->
             <div id="mobile-social-bar"
@@ -321,22 +321,23 @@
                             <span class="tag-gray">Scikit-learn</span>
                         </div>
                         
-                       <div class="flex flex-wrap gap-4 w-full">
+                      <div class="flex flex-wrap gap-2 w-full">
                             <!-- Case Study Button -->
                             <button data-modal-target="modal-ai-logguard"
-                                    class="hero-btn-primary flex-1 flex items-center justify-center gap-2 min-w-[140px]">
-                                <i data-feather="book-open"></i>
+                                    class="hero-btn-primary flex-1 flex items-center justify-center min-w-[140px] px-3 py-2 text-sm sm:text-base gap-1 sm:gap-2">
+                                <i data-feather="book-open" class="w-4 h-4"></i>
                                 Case Study
                             </button>
                         
                             <!-- View Code Button -->
                             <a href="https://github.com/MohsinHaiderSultan"
                                target="_blank"
-                               class="hero-btn-secondary flex-1 flex items-center justify-center gap-2 min-w-[140px]">
+                               class="hero-btn-secondary flex-1 flex items-center justify-center min-w-[140px] px-3 py-2 text-sm sm:text-base gap-1 sm:gap-2">
                                 <i data-feather="github" class="w-4 h-4"></i>
                                 View Code
                             </a>
                         </div>
+
 
                     </div>
 
@@ -1614,6 +1615,7 @@
 </body>
 
 </html>
+
 
 
 
