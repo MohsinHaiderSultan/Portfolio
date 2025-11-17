@@ -1313,56 +1313,241 @@ body {
 
 
 
-/* Scroll to Top Button */
-/* --- Scroll-To-Top Button --- */
-#scrollTopBtn {
+
+/* ================================
+   PREMIUM MODERN SCROLL TO TOP BTN
+   ================================ */
+
+.scroll-top-premium {
     position: fixed;
-    bottom: 40px;
-    right: 40px;
+    bottom: 32px;
+    right: 32px;
     width: 55px;
     height: 55px;
     border-radius: 50%;
-    background: #0b0f19;
-    border: none;
+    background: linear-gradient(135deg, #ffffff50, #ffffff10);
+    backdrop-filter: blur(12px);
+    border: 1px solid #ffffff40;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-
-    /* neon aura */
-    box-shadow:
-        0 0 8px rgba(0, 255, 234, 0.6),
-        0 0 15px rgba(0, 255, 234, 0.4),
-        0 0 25px rgba(0, 255, 234, 0.2);
-
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-
-    color: #00ffee;
-    z-index: 9999;
-
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(20px);
-    transition: all 0.4s ease;
+    color: #0ea5e9; /* Light blue arrow */
+    box-shadow: 0 0 18px rgba(0, 170, 255, 0.35);
+    z-index: 999;
+    transition: all 0.35s ease;
+    animation: pulseGlow 3s infinite ease-in-out;
 }
 
-/* Show when scrolling */
-#scrollTopBtn.show {
+/* Icon */
+.scroll-top-premium .icon-arrow {
+    width: 20px;
+    height: 26px;
+    transition: transform 0.3s ease;
+}
+
+/* Hover Effects — Magnetic + Glow */
+.scroll-top-premium:hover {
+    transform: scale(1.1) translateY(-12px);
+    box-shadow: 0 0 25px rgba(0, 170, 255, 0.6),
+                0 0 40px rgba(0, 170, 255, 0.25);
+    border-color: rgba(0, 170, 255, 0.5);
+}
+
+.scroll-top-premium:hover .icon-arrow {
+    transform: translateY(-3px);
+}
+
+/* Neon Rotating Ring */
+.scroll-top-premium::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: 100%;
+    padding: .1px;
+    background: conic-gradient(
+        #4285F4,
+        #A142F4,
+        #F441B8,
+        #A142F4,
+        #5EB8FF,
+        #4285F4
+    );
+    animation: rotateRing 4s linear infinite;
+    -webkit-mask: 
+        radial-gradient(farthest-side, transparent 65%, black 66%);
+    mask: 
+        radial-gradient(farthest-side, transparent 65%, black 66%);
+}
+
+/* Soft shadow bloom */
+.scroll-top-premium::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    background: radial-gradient(circle, rgba(0, 170, 255, 0.4), transparent 40%);
+    filter: blur(3px);
+    z-index: -1;
+    transition: opacity 0.3s ease;
+}
+
+/* Hover brightens the bloom */
+.scroll-top-premium:hover::after {
     opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
 }
 
-/* Hover effect */
-#scrollTopBtn:hover {
-    background: #0f1526;
+
+
+/* Animations */
+@keyframes rotateRing {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 18px rgba(0,170,255,0.35); }
+    50% { box-shadow: 0 0 25px rgba(0,170,255,0.55); }
+}
+
+
+
+/* ============================================================
+   GEMINI PREMIUM INPUT FIELD
+   ============================================================ */
+.gemini-input {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #ffffff40, #ffffff10);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(41, 42, 42, 0.35);
+    box-shadow: inset 0 0 10px rgba(0,205,255,0.18);
+    font-size: 15px;
+    transition: all 0.35s ease;
+    color: #100f0f;
+}
+
+.gemini-input::placeholder {
+    color: #8f8d8d80;
+}
+
+/* Focus Glow */
+.gemini-input:focus {
+    outline: none;
+    border-color: rgba(0,205,255 ,0.8);
     box-shadow:
-        0 0 12px rgba(0, 255, 234, 0.9),
-        0 0 20px rgba(0, 255, 234, 0.7),
-        0 0 35px rgba(0, 255, 234, 0.5),
-        0 0 50px rgba(0, 255, 234, 0.3);
-    transform: translateY(-4px);
+        0 0 20px rgba(0,209,255,0.45),
+        0 0 40px rgba(66,133,244,0.22),
+        inset 0 0 15px rgba(255,255,255,0.25);
+    background: linear-gradient(135deg, #ffffff55, #ffffff18);
+}
+
+/* Light Mode Fix */
+.dark .gemini-input {
+    color: #fffefe;
+    background: #112c4d90;
+    border-color: #4285f4;
+}
+
+.light .gemini-input:focus {
+    border-color: #4285f4;
+    box-shadow:
+        0 0 20px rgba(66,133,244,0.45),
+        inset 0 0 10px rgba(0,0,0,0.12);
+}
+
+.light .gemini-input::placeholder {
+    color: #555555b3;
+}
+
+
+/* =============================
+   ULTRA PREMIUM GEMINI BUTTON 
+   ============================= */
+.gemini-pro-ultra-btn {
+    position: relative;
+    overflow: hidden;
+    border-radius: .5rem; /* square but soft */
+    padding: 0 1rem;
+    background: rgba(0, 209, 255, 0.85);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: none;
+    cursor: pointer;
+    color: #07e1f1;
+    transition: 0.35s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Outer animated neon border */
+.gemini-pro-ultra-btn::before {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border-radius: inherit;
+     background: conic-gradient(
+        #4285F4,
+        #A142F4,
+        #F441B8,
+        #A142F4,
+        #5EB8FF,
+        #4285F4
+    );
+    animation: geminiBorder 4.5s linear infinite;
+    z-index: 1;
+}
+
+/* Inner actual button surface */
+.gemini-pro-ultra-btn::after {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border-radius: inherit;
+    background: linear-gradient(145deg, #ffffff, rgb(0, 209, 557));
+    z-index: 2;
+}
+
+/* Glow pulse behind button */
+.gemini-pro-ultra-btn.glow::after {
+    box-shadow: 0 0 40px rgb(0, 209, 557);
+}
+
+/* Button content is above */
+.gemini-pro-ultra-btn span,
+.gemini-pro-ultra-btn i {
+    position: relative;
+    z-index: 5;
+}
+
+/* Icon sizing */
+.gemini-icon {
+    font-size: 15px;
+    line-height: 1;
+}
+
+/* Hover effects — 3D lift + glow */
+.gemini-pro-ultra-btn:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 
+        0 0 22px rgba(0, 209, 255, 0.4),
+        0 0 35px rgba(140, 0, 255, 0.25);
+}
+
+/* Rotate border ring */
+@keyframes geminiBorder {
+    0%   { transform: rotate(0deg);   filter: hue-rotate(0deg); }
+    100% { transform: rotate(360deg); filter: hue-rotate(360deg); }
+}
+
+/* On click */
+.gemini-pro-ultra-btn:active {
+    transform: scale(0.97);
+    box-shadow: 0 0 12px rgba(23, 242, 172, 0.3);
 }
 
 
@@ -1371,6 +1556,7 @@ body {
 .hidden {
     display: none;
 }
+
 
 
 
