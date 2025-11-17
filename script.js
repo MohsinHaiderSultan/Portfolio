@@ -178,43 +178,51 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    /* ==========================================================
-       Modals
-    ========================================================== */
-    const modalTriggers = document.querySelectorAll("[data-modal-target]");
+  /* ==========================================================
+   Modals
+========================================================== */
+        const modalTriggers = document.querySelectorAll("[data-modal-target]");
+        
+                const openModal = (modal) => {
+                    modal.classList.add("is-visible");
+                    document.body.style.overflow = "hidden";
+                    initFeather();
+                };
+                
+                const closeModal = (modal) => {
+                    modal.classList.remove("is-visible");
+                    document.body.style.overflow = "auto";
+                
+                    const aiContainer = modal.querySelector(".gemini-response-container");
+                    const aiContent = modal.querySelector(".gemini-response-content");
+                
+                    if (aiContainer && aiContent) {
+                        aiContainer.style.display = "none";
+                        aiContent.innerHTML = "";
+                    }
+                };
+                
+                modalTriggers.forEach(trigger => {
+                    trigger.addEventListener("click", () => {
+                        const target = document.getElementById(trigger.dataset.modalTarget);
+                        if (target) openModal(target);
+                    });
+                });
+                
+               const modalCloseBtns = document.querySelectorAll(".modal-close-btn");
 
-    const openModal = (modal) => {
-        modal.classList.add("is-visible");
-        document.body.style.overflow = "hidden";
-        initFeather();
-    };
-
-    const closeModal = (modal) => {
-        modal.classList.remove("is-visible");
-        document.body.style.overflow = "auto";
-
-        const aiContainer = modal.querySelector(".gemini-response-container");
-        const aiContent = modal.querySelector(".gemini-response-content");
-
-        if (aiContainer && aiContent) {
-            aiContainer.style.display = "none";
-            aiContent.innerHTML = "";
-        }
-    };
-
-    modalTriggers.forEach(trigger => {
-        trigger.addEventListener("click", () => {
-            const target = document.getElementById(trigger.dataset.modalTarget);
-            if (target) openModal(target);
+                    modalCloseBtns.forEach(btn => {
+                        btn.addEventListener("click", () => {
+                            const modal = btn.closest(".modal");
+                            if (modal) {
+                                modal.classList.remove("is-visible");
+                            }
+                    
+                            // Hide scroll-to-top button when modal closes
+                            updateScrollButton();
+                        });
         });
-    });
 
-    document.querySelectorAll(".modal-close-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-            const modal = btn.closest(".modal");
-            closeModal(modal);
-        });
-    });
 
     /* ==========================================================
        Accordion
@@ -502,16 +510,44 @@ function toggleGeminiLoading(isLoading, icon, loader) {
         });
     }
 
-    /* ==========================================================
-       Scroll To Top Button
-    ========================================================== */
+ /* ==========================================================
+   Fix Scroll-To-Top Button Visibility (Final Version)
+========================================================== */
     const scrollBtn = document.getElementById("scrollTopBtn");
+            
+            function updateScrollButton() {
+                if (!scrollBtn) return;
+            
+                // Prevent button from appearing inside modals
+                const modalOpen = document.querySelector(".modal.is-visible");
+            
+                if (modalOpen) {
+                    scrollBtn.classList.remove("show");
+                    return;
+                }
+            
+                // Normal scroll — hide at top, show after 400px
+                if (window.scrollY <= 50) {
+                    scrollBtn.classList.remove("show");   // HIDE at top correctly
+                } else {
+                    scrollBtn.classList.add("show");      // SHOW only when scrolling down
+                }
+            }
+            
+            // Always update on scroll
+            window.addEventListener("scroll", updateScrollButton);
+            
+            // Update when page loads (helps with anchor jumps)
+            updateScrollButton();
+            
+            // Update when switching tabs (Case Study open)
+            document.querySelectorAll("[data-modal-target]").forEach(btn => {
+                btn.addEventListener("click", () => setTimeout(updateScrollButton, 50));
+            });
+            
+            // Update when closing modal
+            document.querySelectorAll(".modal-close-btn").forEach(btn => {
+                btn.addEventListener("click", () => setTimeout(updateScrollButton, 50));
+            });
 
-    window.addEventListener("scroll", () => {
-        scrollBtn.classList.toggle("show", window.scrollY > 400);
-    });
 
-    scrollBtn?.addEventListener("click", () =>
-        window.scrollTo({ top: 0, behavior: "smooth" })
-    );
-});
