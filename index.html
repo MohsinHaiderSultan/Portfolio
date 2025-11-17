@@ -58,22 +58,41 @@
 
 <body class="bg-gray-50 dark:bg-navy text-gray-800 dark:text-light-slate antialiased font-inter">
 
-    <!-- ===== Fixed Social Bar ===== -->
-    <div id="social-bar" class="hidden md:flex flex-col items-center">
-        <a href="https://linkedin.com/in/mohsin-haider-sultan-498b5b251" target="_blank" class="social-bar-link"
-            aria-label="LinkedIn">
-            <i data-feather="linkedin" class="w-5 h-5"></i>
-        </a>
-        <a href="https://github.com/MohsinHaiderSultan" target="_blank" class="social-bar-link" aria-label="GitHub">
-            <i data-feather="github" class="w-5 h-5"></i>
-        </a>
-        <a href="mailto:sp22-bcs136@students.cuisahiwal.edu.pk" class="social-bar-link" aria-label="Email">
-            <i data-feather="mail" class="w-5 h-5"></i>
-        </a>
-        <a href="https://wa.me/923109366396" target="_blank" class="social-bar-link" aria-label="Chat on WhatsApp">
-            <i data-feather="message-circle" class="w-5 h-5"></i>
-        </a>
-    </div>
+   <!-- ===== Fixed Floating Social Bar (Center Vertical) ===== -->
+<div id="social-bar" class="hidden md:flex flex-col items-center fixed transform -translate-y-2/3 gap-3 z-50 backdrop-blur-lg bg-white/30 dark:bg-navy/30 rounded-full shadow-xl border border-white/20 dark:border-white/10 animate-bob">
+
+    <!-- LinkedIn -->
+    <a href="https://linkedin.com/in/mohsin-haider-sultan-498b5b251" 
+       target="_blank" 
+       class="social-bar-link flex items-center justify-center w-10 h-10 rounded-full bg-white/20 dark:bg-navy/20 shadow-md text-blue-600 hover:shadow-[0_0_15px_#0A66C2] transform hover:-translate-y-1 hover:scale-110 transition-all duration-300"
+       aria-label="LinkedIn">
+        <i data-feather="linkedin" class="w-4 h-4"></i>
+    </a>
+
+    <!-- GitHub -->
+    <a href="https://github.com/MohsinHaiderSultan" 
+       target="_blank" 
+       class="social-bar-link flex items-center justify-center w-10 h-10 rounded-full bg-white/20 dark:bg-navy/20 shadow-md text-gray-900 dark:text-white hover:shadow-[0_0_15px_#171515] transform hover:-translate-y-1 hover:scale-110 transition-all duration-300"
+       aria-label="GitHub">
+        <i data-feather="github" class="w-4 h-4"></i>
+    </a>
+
+    <!-- Email -->
+    <a href="mailto:sp22-bcs136@students.cuisahiwal.edu.pk" 
+       class="social-bar-link flex items-center justify-center w-10 h-10 rounded-full bg-white/20 dark:bg-navy/20 shadow-md text-red-600 hover:shadow-[0_0_15px_#E63946] transform hover:-translate-y-1 hover:scale-110 transition-all duration-300"
+       aria-label="Email">
+        <i data-feather="mail" class="w-4 h-4"></i>
+    </a>
+
+    <!-- WhatsApp -->
+    <a href="https://wa.me/923109366396" 
+       target="_blank" 
+       class="social-bar-link flex items-center justify-center w-10 h-10 rounded-full bg-white/20 dark:bg-navy/20 shadow-md text-green-500 hover:shadow-[0_0_15px_#25D366] transform hover:-translate-y-1 hover:scale-110 transition-all duration-300"
+       aria-label="Chat on WhatsApp">
+        <i data-feather="message-circle" class="w-4 h-4"></i>
+    </a>
+</div>
+
 
     <!-- ===== Header & Navigation ===== -->
     <!-- UPDATED: Added id="navbar" for scroll listener -->
@@ -185,75 +204,63 @@
 
         
                        <!-- Hero Buttons -->
-                <div class="flex flex-wrap gap-6 mt-3 mb-8 justify-center md:justify-start w-full">
-                    <!-- Contact Me -->
-                    <a href="#contact" class="hero-btn-primary flex items-center gap-2">
-                        <i data-feather="send" class="w-4 h-4"></i>
-                        Contact Me 
-                    </a>
-                
-                    <!-- My Projects (desktop only) -->
-                    <a href="#projects" class="hero-btn-secondary hidden md:flex items-center gap-2">
-                        <i data-feather="folder" class="w-4 h-4"></i>
-                        My Projects
-                    </a>
-                
-                    <!-- Download CV (mobile only) -->
-                    <a href="https://drive.google.com/uc?export=download&id=17rgEYdWvNLXtRj2x_iJbhIGrTVbYWxPp" 
-                       download="Mohsin_Haider_CV.pdf"
-                       class="hero-btn-secondary md:hidden flex items-center gap-2">
-                        <i data-feather="download" class="w-4 h-4"></i>
-                        Download CV
-                    </a>
-                </div>
-                
-                <!-- Mobile Social Bar -->
-                <div id="mobile-social-bar"
-                     class="md:hidden flex items-center justify-center gap-6 mt-6 p-4 backdrop-blur-lg bg-white/30 dark:bg-navy/30 rounded-full shadow-xl border border-white/20 dark:border-white/10 animate-bob">
-                
-                    <!-- LinkedIn -->
-                    <a href="https://linkedin.com/in/mohsin-haider-sultan-498b5b251"
-                       target="_blank"
-                       class="social-link flex items-center justify-center w-14 h-14 rounded-full bg-white/20 dark:bg-navy/20 shadow-md text-blue-600 hover:shadow-[0_0_20px_#0A66C2] transform hover:-translate-y-1 hover:scale-110 transition-all duration-300">
-                        <i data-feather="linkedin" class="w-7 h-7"></i>
-                    </a>
-                
-                    <!-- GitHub -->
-                    <a href="https://github.com/MohsinHaiderSultan"
-                       target="_blank"
-                       class="social-link flex items-center justify-center w-14 h-14 rounded-full bg-white/20 dark:bg-navy/20 shadow-md text-gray-900 dark:text-white hover:shadow-[0_0_20px_#171515] transform hover:-translate-y-1 hover:scale-110 transition-all duration-300">
-                        <i data-feather="github" class="w-7 h-7"></i>
-                    </a>
-                
-                    <!-- Email -->
-                    <a href="mailto:sp22-bcs136@students.cuisahiwal.edu.pk"
-                       class="social-link flex items-center justify-center w-14 h-14 rounded-full bg-white/20 dark:bg-navy/20 shadow-md text-red-600 hover:shadow-[0_0_20px_#E63946] transform hover:-translate-y-1 hover:scale-110 transition-all duration-300">
-                        <i data-feather="mail" class="w-7 h-7"></i>
-                    </a>
-                
-                    <!-- WhatsApp -->
-                    <a href="https://wa.me/923109366396"
-                       target="_blank"
-                       class="social-link flex items-center justify-center w-14 h-14 rounded-full bg-white/20 dark:bg-navy/20 shadow-md text-green-500 hover:shadow-[0_0_20px_#25D366] transform hover:-translate-y-1 hover:scale-110 transition-all duration-300">
-                        <i data-feather="message-circle" class="w-7 h-7"></i>
-                    </a>
-                </div>
-                
-                <!-- Floating Animation CSS -->
-                <style>
-                @keyframes bob {
-                  0%, 100% { transform: translateY(0); }
-                  50% { transform: translateY(-5px); }
-                }
-                .animate-bob {
-                  animation: bob 3s ease-in-out infinite;
-                }
-                </style>
+               <div class="flex flex-wrap gap-6 mt-10 mb-10 justify-center md:justify-start">
+    <!-- Contact Me -->
+    <a href="#contact" class="hero-btn-primary flex-1 flex items-center justify-center min-w-[140px] px-3 py-4 text-sm sm:text-base gap-1 sm:gap-2">
+        <i data-feather="send" class="w-4 h-4"></i>
+        Contact Me 
+    </a>
 
+    <!-- My Projects (desktop only) -->
+    <a href="#projects" class="hero-btn-secondary hidden md:flex flex-1 flex items-center justify-center min-w-[140px] px-3 py-4 text-sm sm:text-base gap-1 sm:gap-2">
+        <i data-feather="folder" class="w-4 h-4"></i>
+        My Projects
+    </a>
 
+    <!-- Download CV (mobile only) -->
+    <a href="https://drive.google.com/uc?export=download&id=17rgEYdWvNLXtRj2x_iJbhIGrTVbYWxPp" 
+       download="Mohsin_Haider_CV.pdf"
+       class="hero-btn-secondary md:hidden flex-1 flex items-center justify-center min-w-[140px] px-2 py-4 text-sm sm:text-base gap-1 sm:gap-2">
+        <i data-feather="download" class="w-4 h-4"></i>
+        Download CV
+    </a>
+</div>
+                
+               <!-- Mobile Social Bar -->
+<div id="mobile-social-bar"
+     class="flex-row  shadow-xl border border-white/20 animate-bob">
 
+    <!-- LinkedIn -->
+    <a href="https://linkedin.com/in/mohsin-haider-sultan-498b5b251" 
+       target="_blank" 
+       class="social-bar-link flex items-center justify-center w-10 h-10 rounded-full bg-white/20 dark:bg-navy/20 shadow-md text-blue-600 hover:shadow-[0_0_15px_#0A66C2] transform hover:-translate-y-1 hover:scale-110 transition-all duration-300"
+       aria-label="LinkedIn">
+        <i data-feather="linkedin" class="w-4 h-4"></i>
+    </a>
 
+    <!-- GitHub -->
+    <a href="https://github.com/MohsinHaiderSultan" 
+       target="_blank" 
+       class="social-bar-link flex items-center justify-center w-10 h-10 rounded-full bg-white/20 dark:bg-navy/20 shadow-md text-gray-900 dark:text-white hover:shadow-[0_0_15px_#171515] transform hover:-translate-y-1 hover:scale-110 transition-all duration-300"
+       aria-label="GitHub">
+        <i data-feather="github" class="w-4 h-4"></i>
+    </a>
 
+    <!-- Email -->
+    <a href="mailto:sp22-bcs136@students.cuisahiwal.edu.pk" 
+       class="social-bar-link flex items-center justify-center w-10 h-10 rounded-full bg-white/20 dark:bg-navy/20 shadow-md text-red-600 hover:shadow-[0_0_15px_#E63946] transform hover:-translate-y-1 hover:scale-110 transition-all duration-300"
+       aria-label="Email">
+        <i data-feather="mail" class="w-4 h-4"></i>
+    </a>
+
+    <!-- WhatsApp -->
+    <a href="https://wa.me/923109366396" 
+       target="_blank" 
+       class="social-bar-link flex items-center justify-center w-10 h-10 rounded-full bg-white/20 dark:bg-navy/20 shadow-md text-green-500 hover:shadow-[0_0_15px_#25D366] transform hover:-translate-y-1 hover:scale-110 transition-all duration-300"
+       aria-label="Chat on WhatsApp">
+        <i data-feather="message-circle" class="w-4 h-4"></i>
+    </a>
+</div>
         </div>
 
     </div>
@@ -339,10 +346,11 @@
                             <span class="tag-gray">Scikit-learn</span>
                         </div>
                         
-                      <div class="flex flex-wrap gap-2 w-full">
-                            <!-- Case Study Button -->
-                            <button data-modal-target="modal-ai-logguard"
-                                    class="hero-btn-primary flex-1 flex items-center justify-center min-w-[140px] px-3 py-2 text-sm sm:text-base gap-1 sm:gap-2">
+                      
+                 <div class="flex flex-wrap gap-6 mt-3 mb-8 justify-center md:justify-start w-full">           
+                   <!-- Case Study Button -->
+                          <button data-modal-target="modal-ai-logguard"
+                                    class="hero-btn-primary flex-1 flex items-center justify-center min-w-[140px] px-3 py-4 text-sm sm:text-base gap-1 sm:gap-2">
                                 <i data-feather="book-open" class="w-4 h-4"></i>
                                 Case Study
                             </button>
@@ -1025,22 +1033,19 @@
                             message for you.
                         </p>
 
-                        <div class="flex flex-col sm:flex-row gap-2">
-                            <input type="text" id="ai-prompt" class="form-input"
-                                placeholder="e.g., 'I want to discuss your AI LogGuard project'">
+                       <div class="flex flex-col sm:flex-row gap-2 w-full">
+                            <!-- Gemini Input -->
+                            <input type="text" id="ai-prompt" 
+                                class="gemini-input border-gray-300 dark:border-light-navy focus:border-blue-500 focus:ring-blue-500 flex-grow"
+                                placeholder="e.g., 'Love your AI LogGuard project...'">
+                            
+                            <!-- Gemini Premium Button -->
+                            <button id="gemini-pro-btn" aria-label="Generate Message" 
+                            class="gemini-pro-ultra-btn h-12 w-12 sm:w-auto px-3 flex justify-center items-center">
+                            <span class="gemini-glass-icon">✨</span>
+                            <i class="button-loader hidden animate-spin" data-feather="loader"></i>
+                        </button>
 
-                            <!-- FIXED: Correct ID + correct structure -->
-                            <button type="button" id="generate-message-btn"
-                                class="gradient-btn p-3 w-full sm:w-auto flex items-center justify-center gap-2 relative">
-
-                                <!-- Normal icon (hidden during loading) -->
-                                <span class="button-text flex items-center gap-1">
-                                    ✨
-                                </span>
-
-                                <!-- Loader icon -->
-                                <i class="button-loader hidden animate-spin" data-feather="loader"></i>
-                            </button>
                         </div>
 
                         <p id="gemini-status" class="text-center mt-2 text-sm"></p>
@@ -1064,7 +1069,7 @@
                         <div class="text-center">
                             <!-- CORRECTED: This is also the gradient button -->
                             <button type="submit"
-                                class="gradient-btn text-lg px-5 py-3 w-full sm:w-48  justify-center items-center">
+                                class="hero-btn-primary text-lg px-5 py-3 w-full sm:w-48  justify-center items-center">
                                 <span class="button-text">Send Message</span>
                                 <i data-feather="loader" class="button-loader animate-spin hidden ml-2"></i>
                             </button>
@@ -1095,9 +1100,13 @@
         </section>
 
         <!-- Scroll to Top Button -->
-        <button id="scrollTopBtn" aria-label="Scroll to top">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+       <button id="scrollTopBtn" aria-label="Scroll to top" class="scroll-top-premium">
+            <svg xmlns="http://www.w3.org/2000/svg" 
+                 viewBox="0 0 24 24" 
+                 fill="none"
+                 stroke="currentColor" stroke-width="2" 
+                 stroke-linecap="round" stroke-linejoin="round"
+                 class="icon-arrow">
                 <path d="M5 15l7-7 7 7"></path>
             </svg>
         </button>
@@ -1633,6 +1642,7 @@
 </body>
 
 </html>
+
 
 
 
