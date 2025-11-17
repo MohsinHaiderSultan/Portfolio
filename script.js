@@ -1,557 +1,517 @@
-// Wait for the DOM to be fully loaded before running scripts
-document.addEventListener('DOMContentLoaded', () => {
+// Wait for the DOM to load
+document.addEventListener("DOMContentLoaded", () => {
 
-    // ===========================
-    // Initialize Feather Icons
-    // ===========================
+    /* ==========================================================
+       Feather Icons
+    ========================================================== */
     const initFeather = () => {
-        try { feather.replace(); } 
-        catch (e) { console.error('Feather icons failed to load.', e); }
+        try { feather.replace(); }
+        catch (e) { console.error("Feather icons failed to load.", e); }
     };
     initFeather();
 
-    // ===========================
-    // Dark Mode Initialization
-    // ===========================
+    /* ==========================================================
+       Dark Mode
+    ========================================================== */
     const themeToggleBtns = [
-        document.getElementById('theme-toggle'),
-        document.getElementById('theme-toggle-mobile')
+        document.getElementById("theme-toggle"),
+        document.getElementById("theme-toggle-mobile")
     ];
 
     const setTheme = (mode) => {
-        if (mode === 'dark') document.documentElement.classList.add('dark');
-        else document.documentElement.classList.remove('dark');
+        document.documentElement.classList.toggle("dark", mode === "dark");
         localStorage.theme = mode;
     };
 
-    if (!localStorage.theme) {
-        localStorage.theme = 'dark';
-    }
+    if (!localStorage.theme) localStorage.theme = "dark";
     setTheme(localStorage.theme);
 
     const toggleDarkMode = () => {
-        const isDark = document.documentElement.classList.toggle('dark');
-        localStorage.theme = isDark ? 'dark' : 'light';
+        const isDark = document.documentElement.classList.toggle("dark");
+        localStorage.theme = isDark ? "dark" : "light";
         initFeather();
     };
 
-    themeToggleBtns.forEach(btn => {
-        if (btn) btn.addEventListener('click', toggleDarkMode);
-    });
-    
-    // ===========================
-    // NEW: Dynamic Navbar Shadow
-    // ===========================
-    const navbar = document.getElementById('navbar');
+    themeToggleBtns.forEach(btn =>
+        btn?.addEventListener("click", toggleDarkMode)
+    );
+
+    /* ==========================================================
+       Dynamic Navbar Shadow
+    ========================================================== */
+    const navbar = document.getElementById("navbar");
     if (navbar) {
-        window.addEventListener('scroll', () => {
+        window.addEventListener("scroll", () => {
             if (window.scrollY > 50) {
-                navbar.classList.add('shadow-lg', 'dark:bg-navy/95');
+                navbar.classList.add("shadow-lg", "dark:bg-navy/95");
             } else {
-                navbar.classList.remove('shadow-lg', 'dark:bg-navy/95');
+                navbar.classList.remove("shadow-lg", "dark:bg-navy/95");
             }
         });
     }
 
-    // ===========================
-    // Mobile Menu Toggle
-    // ===========================
-    const menuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
+    /* ==========================================================
+       Mobile Menu
+    ========================================================== */
+    const menuBtn = document.getElementById("mobile-menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
 
     if (menuBtn && mobileMenu) {
-        menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-        mobileMenu.addEventListener('click', (e) => {
-            if (e.target.tagName === 'A') mobileMenu.classList.add('hidden');
+        menuBtn.addEventListener("click", () =>
+            mobileMenu.classList.toggle("hidden")
+        );
+        mobileMenu.addEventListener("click", (e) => {
+            if (e.target.tagName === "A") mobileMenu.classList.add("hidden");
         });
     }
 
-    // ===========================
-    // Smooth Scrolling
-    // ===========================
+    /* ==========================================================
+       Smooth Scrolling
+    ========================================================== */
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            if (this.getAttribute('href').length > 1) {
+        anchor.addEventListener("click", (e) => {
+            if (anchor.getAttribute("href") !== "#") {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                target?.scrollIntoView({ behavior: 'smooth' });
+                const target = document.querySelector(anchor.getAttribute("href"));
+                target?.scrollIntoView({ behavior: "smooth" });
             }
         });
     });
 
-    // ===========================
-    // Hero Typing Animation
-    // ===========================
-    if (typeof Typed !== 'undefined') {
-        new Typed('#typed-text', {
+    /* ==========================================================
+       Hero Typing Animation
+    ========================================================== */
+    if (typeof Typed !== "undefined") {
+        new Typed("#typed-text", {
             strings: [
-                        "Computer Science Student",
-                        "Cybersecurity Analyst",
-                        "AI & ML Developer",
-                        "Web Developer",
-                        "Ethical Hacker",
-                        "UI/UX Designer"
-                        ],
+                "Computer Science Student",
+                "Cybersecurity Analyst",
+                "AI & ML Developer",
+                "Web Developer",
+                "Ethical Hacker",
+                "UI/UX Designer"
+            ],
             typeSpeed: 50,
             backSpeed: 30,
             backDelay: 2000,
-            loop: true,
-            smartBackspace: true
+            loop: true
         });
-    } else {
-        console.error('Typed.js library not loaded.');
     }
-    
-    // ===========================
-    // 3D Profile Image Tilt
-    // ===========================
-    const tiltWrapper = document.getElementById('profile-3d-wrap');
-    const tiltCard = document.getElementById('profile-card');
+
+    /* ==========================================================
+       3D Profile Tilt
+    ========================================================== */
+    const tiltWrapper = document.getElementById("profile-3d-wrap");
+    const tiltCard = document.getElementById("profile-card");
 
     const handleTilt = (wrapper, card, e) => {
-        if (!wrapper || !card) return;
         const rect = wrapper.getBoundingClientRect();
-        const width = rect.width;
-        const height = rect.height;
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
-        
-        const xPct = (mouseX / width) - 0.5;
-        const yPct = (mouseY / height) - 0.5;
-        
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+
         const maxTilt = 10;
-        
-        const rotateX = maxTilt * -yPct;
-        const rotateY = maxTilt * xPct;
-        
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        card.style.transform = `
+            perspective(1000px)
+            rotateX(${-y * maxTilt}deg)
+            rotateY(${x * maxTilt}deg)
+        `;
     };
 
-    const resetTilt = (card) => {
-        if (!card) return;
-        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
-    };
+    tiltWrapper?.addEventListener("mousemove", (e) =>
+        handleTilt(tiltWrapper, tiltCard, e)
+    );
+    tiltWrapper?.addEventListener("mouseleave", () =>
+        tiltCard.style.transform = "perspective(1000px) rotateX(0) rotateY(0)"
+    );
 
-    if (tiltWrapper && tiltCard) {
-        tiltWrapper.addEventListener('mousemove', (e) => handleTilt(tiltWrapper, tiltCard, e));
-        tiltWrapper.addEventListener('mouseleave', () => resetTilt(tiltCard));
-    }
-
-    // ===========================
-    // Project Filtering
-    // ===========================
-    const filterButtons = document.querySelectorAll('#filter-buttons .filter-btn');
-    const projectGrid = document.getElementById('project-grid');
-    const projectCards = projectGrid ? projectGrid.querySelectorAll('.project-card') : [];
+    /* ==========================================================
+       Project Filtering
+    ========================================================== */
+    const filterButtons = document.querySelectorAll("#filter-buttons .filter-btn");
+    const projectGrid = document.getElementById("project-grid");
+    const projectCards = projectGrid?.querySelectorAll(".project-card") || [];
 
     filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            const filter = button.getAttribute('data-filter');
+        button.addEventListener("click", () => {
+            filterButtons.forEach(btn => btn.classList.remove("active"));
+            button.classList.add("active");
+
+            const filter = button.dataset.filter;
 
             projectCards.forEach(card => {
-                // Ignore "extra-project" cards if they are hidden
-                if (card.classList.contains('extra-project') && card.classList.contains('hidden')) {
-                    if (filter === 'all' || categories.includes(filter)) {
-                        // If it matches, don't unhide it, let the "show more" button do it
-                    } else {
-                        // If it doesn't match, it should remain hidden
-                    }
-                } else if (!card.classList.contains('extra-project')) {
-                    // This is one of the top 6 projects
-                    const categories = card.getAttribute('data-category');
-                    card.classList.toggle('hidden', filter !== 'all' && !categories.includes(filter));
-                }
+                const categories = card.getAttribute("data-category") || "";
+
+                const matches = filter === "all" || categories.includes(filter);
+                card.classList.toggle("hidden", !matches);
             });
         });
     });
 
-    // ===========================
-    // NEW: Show More/Less Projects
-    // ===========================
-    const showMoreBtn = document.getElementById('show-more-btn');
-    const extraProjects = document.querySelectorAll('.extra-project');
+    /* ==========================================================
+       Show More / Show Less Projects
+    ========================================================== */
+    const showMoreBtn = document.getElementById("show-more-btn");
+    const extraProjects = document.querySelectorAll(".extra-project");
 
-    if (showMoreBtn && extraProjects.length > 0) {
-        showMoreBtn.addEventListener('click', () => {
-            const showMoreText = showMoreBtn.querySelector('.show-more-text');
-            const showLessText = showMoreBtn.querySelector('.show-less-text');
-            
-            // Check if we are currently in "show more" state
-            const isShowingMore = showMoreText.classList.contains('hidden');
+    if (showMoreBtn) {
+        showMoreBtn.addEventListener("click", () => {
+            const showMoreText = showMoreBtn.querySelector(".show-more-text");
+            const showLessText = showMoreBtn.querySelector(".show-less-text");
+
+            const isShowingMore = showMoreText.classList.contains("hidden");
+            const activeFilter = document.querySelector("#filter-buttons .active")?.dataset.filter || "all";
 
             if (isShowingMore) {
-                // We are showing all, so hide the extra ones
-                extraProjects.forEach(card => {
-                    card.classList.add('hidden');
-                });
-                showMoreText.classList.remove('hidden');
-                showLessText.classList.add('hidden');
+                extraProjects.forEach(card => card.classList.add("hidden"));
+                showMoreText.classList.remove("hidden");
+                showLessText.classList.add("hidden");
             } else {
-                // We are showing few, so show all that match the current filter
-                const currentFilter = document.querySelector('#filter-buttons .filter-btn.active').getAttribute('data-filter');
                 extraProjects.forEach(card => {
-                    const categories = card.getAttribute('data-category');
-                    if (currentFilter === 'all' || categories.includes(currentFilter)) {
-                        card.classList.remove('hidden');
+                    const categories = card.getAttribute("data-category") || "";
+                    if (activeFilter === "all" || categories.includes(activeFilter)) {
+                        card.classList.remove("hidden");
                     }
                 });
-                showMoreText.classList.add('hidden');
-                showLessText.classList.remove('hidden');
+                showMoreText.classList.add("hidden");
+                showLessText.classList.remove("hidden");
             }
         });
     }
 
-
-    // ===========================
-    // Project Modals
-    // ===========================
-    const modalTriggers = document.querySelectorAll('[data-modal-target]');
+    /* ==========================================================
+       Modals
+    ========================================================== */
+    const modalTriggers = document.querySelectorAll("[data-modal-target]");
 
     const openModal = (modal) => {
-        modal.classList.add('is-visible');
-        document.body.style.overflow = 'hidden';
+        modal.classList.add("is-visible");
+        document.body.style.overflow = "hidden";
         initFeather();
-
-        const closeBtns = modal.querySelectorAll('.modal-close-btn');
-        closeBtns.forEach(btn => btn.addEventListener('click', () => closeModal(modal), { once: true }));
-
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal(modal);
-        });
     };
 
     const closeModal = (modal) => {
-        modal.classList.remove('is-visible');
-        document.body.style.overflow = 'auto';
-        // Reset AI content on close
-        const aiContainer = modal.querySelector('.gemini-response-container');
-        const aiContent = modal.querySelector('.gemini-response-content');
+        modal.classList.remove("is-visible");
+        document.body.style.overflow = "auto";
+
+        const aiContainer = modal.querySelector(".gemini-response-container");
+        const aiContent = modal.querySelector(".gemini-response-content");
+
         if (aiContainer && aiContent) {
-            aiContainer.style.display = 'none';
-            aiContent.innerHTML = '';
+            aiContainer.style.display = "none";
+            aiContent.innerHTML = "";
         }
     };
 
     modalTriggers.forEach(trigger => {
-        trigger.addEventListener('click', () => {
-            const modal = document.getElementById(trigger.getAttribute('data-modal-target'));
-            if (modal) openModal(modal);
+        trigger.addEventListener("click", () => {
+            const target = document.getElementById(trigger.dataset.modalTarget);
+            if (target) openModal(target);
         });
     });
 
-    // ===========================
-    // Accordion
-    // ===========================
-    document.querySelectorAll('.accordion-header').forEach(header => {
-        header.addEventListener('click', () => {
-            const body = header.nextElementSibling;
-            header.classList.toggle('is-open');
-            body.classList.toggle('is-open');
+    document.querySelectorAll(".modal-close-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const modal = btn.closest(".modal");
+            closeModal(modal);
         });
     });
 
-    // ===========================
-    // Scroll Fade Animations
-    // ===========================
-    const scrollFadeElements = document.querySelectorAll('.scroll-fade');
+    /* ==========================================================
+       Accordion
+    ========================================================== */
+    document.querySelectorAll(".accordion-header").forEach(header => {
+        header.addEventListener("click", () => {
+            header.classList.toggle("is-open");
+            header.nextElementSibling.classList.toggle("is-open");
+        });
+    });
+
+    /* ==========================================================
+       Scroll Fade Animation
+    ========================================================== */
+    const scrollFadeElements = document.querySelectorAll(".scroll-fade");
 
     if (scrollFadeElements.length > 0) {
         const observer = new IntersectionObserver((entries, obs) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
+                    entry.target.classList.add("is-visible");
                     obs.unobserve(entry.target);
                 }
             });
-        }, { root: null, rootMargin: '0px', threshold: 0.1 });
+        }, { threshold: 0.1 });
 
         scrollFadeElements.forEach(el => observer.observe(el));
     }
-    
-    // ===========================
-    // GEMINI API FEATURES
-    // ===========================
 
-    // --- Main API Call Function ---
+    /* ==========================================================
+       Gemini API Core Function
+    ========================================================== */
     const callGeminiAPI = async (prompt, systemInstruction, retries = 3, delay = 1000) => {
-        const apiKey = "AIzaSyDi7nyy5VeTLBGgf7ntjtVUKSR3l5bzO8I"; // API key is handled by the environment
-        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+        const apiKey = "AIzaSyDi7nyy5VeTLBGgf7ntjtVUKSR3l5bzO8I";
+        const apiUrl =
+            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
 
         const payload = {
             contents: [{ parts: [{ text: prompt }] }],
-            tools: [{ "google_search": {} }], 
-            systemInstruction: {
-                parts: [{ text: systemInstruction }]
-            },
+            tools: [{ google_search: {} }],
+            systemInstruction: { parts: [{ text: systemInstruction }] },
         };
 
         for (let i = 0; i < retries; i++) {
             try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
+                const res = await fetch(apiUrl, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload),
                 });
 
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
+                if (!res.ok) throw new Error(`HTTP Error: ${res.status}`);
 
-                const result = await response.json();
-                const candidate = result.candidates?.[0];
+                const data = await res.json();
+                const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
 
-                if (candidate && candidate.content?.parts?.[0]?.text) {
-                    return { success: true, text: candidate.content.parts[0].text };
-                } else {
-                    throw new Error("Invalid response structure from API.");
-                }
-            } catch (error) {
+                if (text) return { success: true, text };
+                throw new Error("Invalid Gemini response.");
+            }
+            catch (e) {
                 if (i === retries - 1) {
-                    console.error("Gemini API call failed:", error);
-                    return { success: false, text: "Error: Unable to get a response at this time." };
+                    console.error("Gemini Error:", e);
+                    return { success: false, text: "Error: Could not generate response." };
                 }
-                await new Promise(res => setTimeout(res, delay * Math.pow(2, i)));
+                await new Promise(res => setTimeout(res, delay * (2 ** i)));
             }
         }
     };
 
-    // --- 1. AI Project Explainer ---
-    const aiExplainButtons = document.querySelectorAll('.btn-ask-ai');
-    
-    aiExplainButtons.forEach(button => {
-        button.addEventListener('click', async () => {
-            const title = button.dataset.projectTitle;
-            const desc = button.dataset.projectDesc;
-            
-            const modal = button.closest('.modal-content');
+    /* ==========================================================
+       AI Project Explainer
+    ========================================================== */
+    document.querySelectorAll(".btn-ask-ai").forEach(button => {
+        button.addEventListener("click", async () => {
+            const modal = button.closest(".modal-content");
             if (!modal) return;
 
-            const aiContainer = modal.querySelector('.gemini-response-container');
-            const aiContent = modal.querySelector('.gemini-response-content');
-            if (!aiContainer || !aiContent) return;
+            const aiContainer = modal.querySelector(".gemini-response-container");
+            const aiContent = modal.querySelector(".gemini-response-content");
+            const btnText = button.querySelector(".button-text");
+            const btnLoader = button.querySelector(".button-loader");
 
-            const btnText = button.querySelector('.button-text');
-            const btnLoader = button.querySelector('.button-loader');
-
-            // Show loading state
-            aiContainer.style.display = 'block';
-            aiContent.innerHTML = '<i data-feather="loader" class="animate-spin"></i>';
+            aiContainer.style.display = "block";
+            aiContent.innerHTML = `<i data-feather="loader" class="animate-spin"></i>`;
             initFeather();
-            button.disabled = true;
-            if(btnText && btnLoader) {
-                btnText.classList.add('hidden');
-                btnLoader.classList.remove('hidden');
-            }
 
-            const systemInstruction = "You are a helpful portfolio assistant. Your goal is to explain technical concepts simply for a non-technical recruiter or professor. Keep your explanation to one short paragraph.";
-            const prompt = `Explain my project "${title}" to a recruiter. Here's my description: "${desc}". What are the key technical concepts (like OpenMP, Scikit-learn, or OOP) in one short paragraph?`;
+            button.disabled = true;
+            btnText.classList.add("hidden");
+            btnLoader.classList.remove("hidden");
+
+            const prompt = `
+                Explain my project "${button.dataset.projectTitle}"
+                to a recruiter. Description:
+                "${button.dataset.projectDesc}"
+            `;
+
+            const systemInstruction =
+                "Explain technical concepts in simple language for recruiter understanding.";
 
             const response = await callGeminiAPI(prompt, systemInstruction);
 
-            // Display result
-            aiContent.innerHTML = response.text.replace(/\n/g, '<br>'); // Format line breaks
+            aiContent.innerHTML = response.text?.replace(/\n/g, "<br>");
             button.disabled = false;
-            if(btnText && btnLoader) {
-                btnText.classList.remove('hidden');
-                btnLoader.classList.add('hidden');
-            }
+
+            btnText.classList.remove("hidden");
+            btnLoader.classList.add("hidden");
         });
     });
 
-    // --- 2. NEW: AI Contact Form Assistant ---
-const generateMessageBtn = document.getElementById('generate-message-btn');
-const aiPromptInput = document.getElementById('ai-prompt');
-const messageTextarea = document.getElementById('message');
-const geminiStatus = document.getElementById('gemini-status');
-const contactNameInput = document.getElementById('name');
+    /* ==========================================================
+       AI Contact Message Generator
+    ========================================================== */
+   // --- AI Contact Form Assistant (Premium Updated Version) ---
+const generateMessageBtn = document.getElementById("gemini-pro-btn");
+const aiPromptInput = document.getElementById("ai-prompt");
+const messageTextarea = document.getElementById("message");
+const geminiStatus = document.getElementById("gemini-status");
+const contactNameInput = document.getElementById("name");
 
 if (generateMessageBtn) {
-    generateMessageBtn.addEventListener('click', async () => {
+    generateMessageBtn.addEventListener("click", async () => {
+
         const prompt = aiPromptInput.value.trim();
-        const name = contactNameInput.value.trim() || 'Sender';
+        const name = contactNameInput.value.trim() || "Sender";
 
         if (!prompt) {
-            geminiStatus.textContent = "Please enter a few keywords.";
-            geminiStatus.className = "form-status show error";
-            setTimeout(() => geminiStatus.classList.remove("show"), 3000);
+            showGeminiStatus("Please enter a few keywords.", "error");
             return;
         }
 
-        // Loading UI
-        const btnText = generateMessageBtn.querySelector('.button-text');
-        const btnLoader = generateMessageBtn.querySelector('.button-loader');
+        // Button elements
+        const iconElement = generateMessageBtn.querySelector(".gemini-glass-icon");
+        const loaderElement = generateMessageBtn.querySelector(".button-loader");
 
-        generateMessageBtn.disabled = true;
-        btnText.classList.add('hidden');
-        btnLoader.classList.remove('hidden');
-        feather.replace();
+        toggleGeminiLoading(true, iconElement, loaderElement);
+        showGeminiStatus("✨ Drafting message... please wait.", "success");
 
-        geminiStatus.textContent = "✨ Drafting message... please wait.";
-        geminiStatus.className = "form-status show success";
-
-        // Prepare prompt
+        // Gemini instructions
         const systemInstruction = `
-            You are an AI assistant helping a visitor on Mohsin Haider's portfolio.
-            Write a professional and friendly message (max 4 sentences) from ${name}.
+            You are an AI assistant helping a visitor on Mohsin Haider Sultan's portfolio.
+            Write a professional, friendly 3–4 sentence message from ${name}.
         `;
 
         const finalPrompt = `Keywords: "${prompt}". Sender Name: ${name}. Draft the message.`;
 
+        // Call Gemini API
         const response = await callGeminiAPI(finalPrompt, systemInstruction);
 
         if (response.success) {
-            messageTextarea.value = response.text.replace(/\*/g, '');
-            geminiStatus.textContent = "✨ Message drafted!";
-            geminiStatus.className = "form-status show success";
+            messageTextarea.value = response.text.replace(/\*/g, "");
+            showGeminiStatus("✨ Message drafted!", "success");
         } else {
-            geminiStatus.textContent = "❌ Error creating message. Try again.";
-            geminiStatus.className = "form-status show error";
+            showGeminiStatus("❌ Error creating message. Try again.", "error");
         }
 
-        // Reset loading UI
-        generateMessageBtn.disabled = false;
-        btnText.classList.remove("hidden");
-        btnLoader.classList.add("hidden");
-
-        setTimeout(() => geminiStatus.classList.remove("show"), 4000);
+        toggleGeminiLoading(false, iconElement, loaderElement);
     });
+}
+
+/* -------------------------
+   Helpers
+--------------------------*/
+
+// Status message animation + style
+function showGeminiStatus(msg, type = "success") {
+    geminiStatus.textContent = msg;
+    geminiStatus.className = `form-status show ${type}`;
+
+    setTimeout(() => geminiStatus.classList.remove("show"), 3500);
+}
+
+// Button loading animation switch
+function toggleGeminiLoading(isLoading, icon, loader) {
+    generateMessageBtn.disabled = isLoading;
+
+    if (icon) icon.classList.toggle("hidden", isLoading);
+    if (loader) loader.classList.toggle("hidden", !isLoading);
+
+    // Re-render Feather icons safely
+    if (typeof feather !== "undefined") {
+        feather.replace();
+    }
 }
 
 
 
-    // ===========================
-    // Contact Form Handling
-    // ===========================
-    const contactForm = document.getElementById('contact-form');
-    const formStatus = document.getElementById('form-status');
+    /* ==========================================================
+       Contact Form Handler
+    ========================================================== */
+    const contactForm = document.getElementById("contact-form");
+    const formStatus = document.getElementById("form-status");
 
-    if (contactForm && formStatus) {
-        const showStatus = (message, type = 'success') => {
-            formStatus.textContent = message;
+    if (contactForm) {
+
+        const showStatus = (msg, type = "success") => {
+            formStatus.textContent = msg;
             formStatus.className = `form-status show ${type}`;
-            setTimeout(() => formStatus.classList.remove('show'), 4000);
+            setTimeout(() => formStatus.classList.remove("show"), 4000);
         };
 
-        const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        const validEmail = (e) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
 
-        const submitForm = async (name, email, message) => {
-            const formData = new FormData();
-            formData.append('name', name);
-            formData.append('email', email);
-            formData.append('message', message);
+        const submitForm = async (name, email, msg) => {
+            const data = new FormData();
+            data.append("name", name);
+            data.append("email", email);
+            data.append("message", msg);
 
             try {
-                const response = await fetch(contactForm.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: { 'Accept': 'application/json' }
+                const res = await fetch(contactForm.action, {
+                    method: "POST",
+                    headers: { Accept: "application/json" },
+                    body: data
                 });
 
-                if (response.ok) {
-                    showStatus('✅ Message sent successfully!', 'success');
-                    localStorage.removeItem('offlineMessage');
-                    return true; 
-                } else {
-                    const data = await response.json();
-                    const errorMsg = data.errors ? data.errors.map(err => err.message).join(", ") : "Something went wrong!";
-                    showStatus(`❌ ${errorMsg}`, 'error');
-                    return false; 
+                if (res.ok) {
+                    localStorage.removeItem("offlineMessage");
+                    showStatus("✅ Message sent!", "success");
+                    return true;
                 }
-            } catch (error) {
+
+                const json = await res.json();
+                const err = json.errors?.map(e => e.message).join(", ") || "Error sending message";
+                showStatus(`❌ ${err}`, "error");
+                return false;
+            }
+            catch (e) {
                 if (!navigator.onLine) {
-                    localStorage.setItem('offlineMessage', JSON.stringify({ name, email, message }));
-                    showStatus('⚠️ You are offline. Message saved locally.', 'error');
+                    localStorage.setItem("offlineMessage", JSON.stringify({ name, email, msg }));
+                    showStatus("⚠️ Offline — message saved.", "error");
                 } else {
-                    showStatus('❌ Network error. Please try again.', 'error');
+                    showStatus("❌ Network error.", "error");
                 }
                 return false;
             }
         };
 
-        contactForm.addEventListener('submit', async (e) => {
+        contactForm.addEventListener("submit", async (e) => {
             e.preventDefault();
-            
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const btnText = submitBtn.querySelector('.button-text');
-            const btnLoader = submitBtn.querySelector('.button-loader');
 
-            submitBtn.disabled = true;
-            btnText.classList.add('hidden');
-            btnLoader.classList.remove('hidden');
-            initFeather(); 
+            const btn = contactForm.querySelector("button[type='submit']");
+            const btnText = btn.querySelector(".button-text");
+            const btnLoader = btn.querySelector(".button-loader");
+
+            btn.disabled = true;
+            btnText.classList.add("hidden");
+            btnLoader.classList.remove("hidden");
 
             const name = contactForm.name.value.trim();
             const email = contactForm.email.value.trim();
-            const message = contactForm.message.value.trim();
+            const msg = contactForm.message.value.trim();
 
-            const stopLoading = () => {
-                submitBtn.disabled = false;
-                btnText.classList.remove('hidden');
-                btnLoader.classList.add('hidden');
-            };
-
-            if (!name || !email || !message) {
-                showStatus('Please fill in all fields.', 'error');
-                stopLoading();
+            if (!name || !email || !msg) {
+                showStatus("Please fill all fields.", "error");
+                btn.disabled = false;
+                btnText.classList.remove("hidden");
+                btnLoader.classList.add("hidden");
                 return;
             }
 
-            if (!validateEmail(email)) {
-                showStatus('Please enter a valid email address.', 'error');
-                stopLoading();
+            if (!validEmail(email)) {
+                showStatus("Invalid email format.", "error");
+                btn.disabled = false;
+                btnText.classList.remove("hidden");
+                btnLoader.classList.add("hidden");
                 return;
             }
 
-            const success = await submitForm(name, email, message);
-            
-            if (success) {
-                contactForm.reset(); 
-            }
-            
-            stopLoading();
+            const ok = await submitForm(name, email, msg);
+            if (ok) contactForm.reset();
+
+            btn.disabled = false;
+            btnText.classList.remove("hidden");
+            btnLoader.classList.add("hidden");
         });
 
-        // --- Check for offline saved message on page load ---
-        const offlineMsg = localStorage.getItem('offlineMessage');
-        if (offlineMsg) {
-            const { name, email, message } = JSON.parse(offlineMsg);
-            showStatus('⚠️ You have a saved message from offline. It will be sent automatically when online.', 'error');
-        }
-
-        // --- Automatically submit offline messages when back online ---
-        window.addEventListener('online', async () => {
-            const saved = localStorage.getItem('offlineMessage');
+        // Offline auto-send
+        window.addEventListener("online", async () => {
+            const saved = localStorage.getItem("offlineMessage");
             if (saved) {
-                const { name, email, message } = JSON.parse(saved);
-                showStatus('📤 Sending saved offline message...', 'success');
-                await submitForm(name, email, message);
+                const { name, email, msg } = JSON.parse(saved);
+                showStatus("📤 Sending saved message...", "success");
+                await submitForm(name, email, msg);
             }
         });
     }
 
-    // Scroll-to-top button
-       
+    /* ==========================================================
+       Scroll To Top Button
+    ========================================================== */
     const scrollBtn = document.getElementById("scrollTopBtn");
 
     window.addEventListener("scroll", () => {
-        if (window.scrollY > 400) {
-            scrollBtn.classList.add("show");
-        } else {
-            scrollBtn.classList.remove("show");
-        }
+        scrollBtn.classList.toggle("show", window.scrollY > 400);
     });
 
-    scrollBtn.addEventListener("click", () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    });
-
-
-
-
-    
+    scrollBtn?.addEventListener("click", () =>
+        window.scrollTo({ top: 0, behavior: "smooth" })
+    );
 });
