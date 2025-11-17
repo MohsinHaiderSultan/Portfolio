@@ -1313,21 +1313,19 @@ body {
 
 
 
-
 /* ================================
    PREMIUM MODERN SCROLL TO TOP BTN
    ================================ */
-
 .scroll-top-premium {
     position: fixed;
-    bottom: 32px;
-    right: 32px;
-    width: 55px;
-    height: 55px;
+    bottom: 22px;
+    right: 22px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     background: linear-gradient(135deg, #ffffff50, #ffffff10);
     backdrop-filter: blur(12px);
-    border: 1px solid #ffffff40;
+    border: 2px solid #312e2e40;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1358,28 +1356,6 @@ body {
     transform: translateY(-3px);
 }
 
-/* Neon Rotating Ring */
-.scroll-top-premium::before {
-    content: "";
-    position: absolute;
-    inset: -1px;
-    border-radius: 100%;
-    padding: .1px;
-    background: conic-gradient(
-        #4285F4,
-        #A142F4,
-        #F441B8,
-        #A142F4,
-        #5EB8FF,
-        #4285F4
-    );
-    animation: rotateRing 4s linear infinite;
-    -webkit-mask: 
-        radial-gradient(farthest-side, transparent 65%, black 66%);
-    mask: 
-        radial-gradient(farthest-side, transparent 65%, black 66%);
-}
-
 /* Soft shadow bloom */
 .scroll-top-premium::after {
     content: "";
@@ -1398,8 +1374,6 @@ body {
     opacity: 1;
 }
 
-
-
 /* Animations */
 @keyframes rotateRing {
     0% { transform: rotate(0deg); }
@@ -1410,7 +1384,6 @@ body {
     0%, 100% { box-shadow: 0 0 18px rgba(0,170,255,0.35); }
     50% { box-shadow: 0 0 25px rgba(0,170,255,0.55); }
 }
-
 
 
 /* ============================================================
@@ -1445,13 +1418,14 @@ body {
     background: linear-gradient(135deg, #ffffff55, #ffffff18);
 }
 
-/* Light Mode Fix */
+/* Dark Mode */
 .dark .gemini-input {
     color: #fffefe;
     background: #112c4d90;
     border-color: #4285f4;
 }
 
+/* Light Mode */
 .light .gemini-input:focus {
     border-color: #4285f4;
     box-shadow:
@@ -1465,20 +1439,20 @@ body {
 
 
 /* =============================
-   ULTRA PREMIUM GEMINI BUTTON 
+   ULTRA PREMIUM GEMINI BUTTON
    ============================= */
 .gemini-pro-ultra-btn {
     position: relative;
     overflow: hidden;
-    border-radius: .5rem; /* square but soft */
+    border-radius: 0.5rem;
     padding: 0 1rem;
-    background: rgba(0, 209, 255, 0.85);
+    background: rgba(108, 224, 247, 0.85);
     backdrop-filter: blur(12px) saturate(180%);
     -webkit-backdrop-filter: blur(12px) saturate(180%);
     border: none;
     cursor: pointer;
-    color: #07e1f1;
-    transition: 0.35s ease;
+    color: #f4fafb;
+    transition: 0.5s ease;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1488,66 +1462,48 @@ body {
 .gemini-pro-ultra-btn::before {
     content: "";
     position: absolute;
-    inset: -3px;
+    inset: -1px;
     border-radius: inherit;
-     background: conic-gradient(
+    background: conic-gradient(
         #4285F4,
-        #A142F4,
-        #F441B8,
-        #A142F4,
-        #5EB8FF,
+        #aaf442,
+        #038af9,
+        #794a6a,
+        #f52779,
         #4285F4
     );
     animation: geminiBorder 4.5s linear infinite;
-    z-index: 1;
+    z-index: -5;
 }
 
 /* Inner actual button surface */
 .gemini-pro-ultra-btn::after {
     content: "";
     position: absolute;
-    inset: 4px;
+    inset: 3px;
     border-radius: inherit;
-    background: linear-gradient(145deg, #ffffff, rgb(0, 209, 557));
+    background: linear-gradient(125deg, #ffffff, rgb(0, 209, 255));
     z-index: 2;
 }
 
-/* Glow pulse behind button */
-.gemini-pro-ultra-btn.glow::after {
-    box-shadow: 0 0 40px rgb(0, 209, 557);
-}
-
-/* Button content is above */
+/* Button content above */
 .gemini-pro-ultra-btn span,
 .gemini-pro-ultra-btn i {
     position: relative;
     z-index: 5;
 }
 
-/* Icon sizing */
-.gemini-icon {
-    font-size: 15px;
-    line-height: 1;
-}
-
 /* Hover effects — 3D lift + glow */
 .gemini-pro-ultra-btn:hover {
-    transform: translateY(-4px) scale(1.05);
-    box-shadow: 
-        0 0 22px rgba(0, 209, 255, 0.4),
-        0 0 35px rgba(140, 0, 255, 0.25);
+    background-color: #555555b3;
+    transform: translateY(-4px);
 }
 
 /* Rotate border ring */
 @keyframes geminiBorder {
     0%   { transform: rotate(0deg);   filter: hue-rotate(0deg); }
+    50%  { transform: rotate(180deg); filter: hue-rotate(-180deg); }
     100% { transform: rotate(360deg); filter: hue-rotate(360deg); }
-}
-
-/* On click */
-.gemini-pro-ultra-btn:active {
-    transform: scale(0.97);
-    box-shadow: 0 0 12px rgba(23, 242, 172, 0.3);
 }
 
 
@@ -1556,6 +1512,7 @@ body {
 .hidden {
     display: none;
 }
+
 
 
 
