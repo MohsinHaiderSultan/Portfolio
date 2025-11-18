@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize Feather Icons
     // ===========================
     const initFeather = () => {
-        try { feather.replace(); } 
+        try { feather.replace(); }
         catch (e) { console.error('Feather icons failed to load.', e); }
     };
     initFeather();
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     themeToggleBtns.forEach(btn => {
         if (btn) btn.addEventListener('click', toggleDarkMode);
     });
-    
+
     // ===========================
     // NEW: Dynamic Navbar Shadow
     // ===========================
@@ -53,18 +53,33 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ===========================
-    // Mobile Menu Toggle
-    // ===========================
     const menuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
+    const menuOverlay = document.getElementById('mobile-menu-overlay');
 
-    if (menuBtn && mobileMenu) {
-        menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-        mobileMenu.addEventListener('click', (e) => {
-            if (e.target.tagName === 'A') mobileMenu.classList.add('hidden');
+    menuBtn.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.toggle('is-open');
+        menuBtn.classList.toggle('is-open');
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+
+    menuOverlay.addEventListener('click', () => {
+        mobileMenu.classList.remove('is-open');
+        menuBtn.classList.remove('is-open');
+        document.body.style.overflow = '';
+    });
+
+    // Close menu when a link is clicked
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.remove('is-open');
+            menuBtn.classList.remove('is-open');
+            document.body.style.overflow = '';
         });
-    }
+    });
+
+
+
 
     // ===========================
     // Smooth Scrolling
@@ -85,23 +100,69 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof Typed !== 'undefined') {
         new Typed('#typed-text', {
             strings: [
-                        "Computer Science Student",
-                        "Cybersecurity Analyst",
-                        "AI & ML Developer",
-                        "Web Developer",
-                        "Ethical Hacker",
-                        "UI/UX Designer"
-                        ],
+                "Computer Science Student",
+                "Cybersecurity Analyst",
+                "AI and ML Developer",
+                "Web Developer",
+                "Ethical Hacker",
+                "UI/UX Designer"
+            ],
             typeSpeed: 50,
             backSpeed: 30,
-            backDelay: 2000,
+            backDelay: 1500,
             loop: true,
             smartBackspace: true
         });
     } else {
         console.error('Typed.js library not loaded.');
     }
-    
+
+    // ===========================
+    // NEW: Active Nav Link Highlighting
+    // ===========================
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    // Set data-text attribute for hover effect
+    navLinks.forEach(link => {
+        const span = link.querySelector('span');
+        if (span) {
+            span.dataset.text = span.textContent;
+            // Create the second span for the hover effect
+            const hoverSpan = document.createElement('span');
+            hoverSpan.textContent = span.textContent;
+            hoverSpan.setAttribute('aria-hidden', 'true');
+            hoverSpan.style.position = 'absolute';
+            hoverSpan.style.top = '100%';
+            hoverSpan.style.left = '0';
+            hoverSpan.style.color = 'rgb(10 25 47)'; // navy
+            hoverSpan.style.transform = 'translateY(0)';
+            span.appendChild(hoverSpan);
+        }
+    });
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '-50% 0px -50% 0px', // Triggers when section is in middle of viewport
+        threshold: 0
+    };
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+                });
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(section => {
+        sectionObserver.observe(section);
+    });
+
+
     // ===========================
     // 3D Profile Image Tilt
     // ===========================
@@ -115,15 +176,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const height = rect.height;
         const mouseX = e.clientX - rect.left;
         const mouseY = e.clientY - rect.top;
-        
+
         const xPct = (mouseX / width) - 0.5;
         const yPct = (mouseY / height) - 0.5;
-        
+
         const maxTilt = 10;
-        
+
         const rotateX = maxTilt * -yPct;
         const rotateY = maxTilt * xPct;
-        
+
         card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     };
 
@@ -177,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showMoreBtn.addEventListener('click', () => {
             const showMoreText = showMoreBtn.querySelector('.show-more-text');
             const showLessText = showMoreBtn.querySelector('.show-less-text');
-            
+
             // Check if we are currently in "show more" state
             const isShowingMore = showMoreText.classList.contains('hidden');
 
@@ -218,6 +279,13 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.classList.add('is-visible');
         document.body.style.overflow = 'hidden';
         initFeather();
+
+        // NEW: Hide scroll-to-top button
+        const scrollTopBtn = document.getElementById("scrollTopBtn");
+        if (scrollTopBtn) {
+            scrollTopBtn.style.opacity = "0";
+            scrollTopBtn.style.pointerEvents = "none";
+        }
 
         // Ensure ARIA & roles are present
         try {
@@ -286,6 +354,14 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.classList.remove('is-visible');
         document.body.style.overflow = 'auto';
 
+        // NEW: Conditionally show scroll-to-top button
+        const scrollTopBtn = document.getElementById("scrollTopBtn");
+        if (scrollTopBtn) {
+            // UPDATED: Remove inline styles to let CSS classes take over
+            scrollTopBtn.style.opacity = "";
+            scrollTopBtn.style.pointerEvents = "";
+        }
+
         // Reset AI content on close
         const aiContainer = modal.querySelector('.gemini-response-container');
         const aiContent = modal.querySelector('.gemini-response-content');
@@ -295,7 +371,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Restore ARIA state
-        try { modal.setAttribute('aria-hidden', 'true'); } catch (err) {}
+        try { modal.setAttribute('aria-hidden', 'true'); } catch (err) { }
 
         // Remove backdrop click handler
         if (modal._outsideClickHandler) {
@@ -354,19 +430,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         scrollFadeElements.forEach(el => observer.observe(el));
     }
-    
+
     // ===========================
     // GEMINI API FEATURES
     // ===========================
 
     // --- Main API Call Function ---
     const callGeminiAPI = async (prompt, systemInstruction, retries = 3, delay = 1000) => {
-        const apiKey = "AIzaSyDi7nyy5VeTLBGgf7ntjtVUKSR3l5bzO8I"; // API key is handled by the environment
+        const apiKey = "AIzaSyDi7nyy5VeTLBGgf7ntjtVUKSR3l5bzO8I"; // CRITICAL: API key removed. This must be handled by the environment, not a public file.
         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
 
         const payload = {
             contents: [{ parts: [{ text: prompt }] }],
-            tools: [{ "google_search": {} }], 
+            tools: [{ "google_search": {} }],
             systemInstruction: {
                 parts: [{ text: systemInstruction }]
             },
@@ -404,12 +480,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 1. AI Project Explainer ---
     const aiExplainButtons = document.querySelectorAll('.btn-ask-ai');
-    
+
     aiExplainButtons.forEach(button => {
         button.addEventListener('click', async () => {
             const title = button.dataset.projectTitle;
             const desc = button.dataset.projectDesc;
-            
+
             const modal = button.closest('.modal-content');
             if (!modal) return;
 
@@ -425,7 +501,7 @@ document.addEventListener('DOMContentLoaded', () => {
             aiContent.innerHTML = '<i data-feather="loader" class="animate-spin"></i>';
             initFeather();
             button.disabled = true;
-            if(btnText && btnLoader) {
+            if (btnText && btnLoader) {
                 btnText.classList.add('hidden');
                 btnLoader.classList.remove('hidden');
             }
@@ -435,76 +511,91 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const response = await callGeminiAPI(prompt, systemInstruction);
 
-            // Display result
-            aiContent.innerHTML = response.text.replace(/\n/g, '<br>'); // Format line breaks
+            // Display result - UPDATED with Markdown parsing
+            if (response.success) {
+                let html = response.text
+                    .replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-gray-900 dark:text-lightest-slate">$1</strong>') // Bold
+                    .replace(/^\* (.*?)(?=\n\* |$)/gm, '<li class="flex items-start"><i data-feather="check" class="w-4 h-4 mr-2 text-cyan flex-shrink-0 mt-1"></i><span>$1</span></li>') // List items
+                    .replace(/(\<li\>.*?\<\/li\>)/gs, '<ul class="list-none space-y-1 mt-2">$1</ul>') // Wrap lists
+                    .replace(/\n/g, '<br>'); // Newlines
+
+                // Clean up any <br> tags that might have snuck into the <ul>
+                html = html.replace(/<ul.*?><br>(.*?)<\/ul>/gs, '<ul>$1</ul>');
+
+                aiContent.innerHTML = html;
+                initFeather(); // Re-run feather to render new 'check' icons
+            } else {
+                aiContent.innerHTML = response.text; // Show error message
+            }
+
             button.disabled = false;
-            if(btnText && btnLoader) {
+            if (btnText && btnLoader) {
                 btnText.classList.remove('hidden');
                 btnLoader.classList.add('hidden');
             }
         });
     });
 
-// --- 2. NEW: AI Contact Form Assistant ---
-const generateMessageBtn = document.getElementById('gemini-pro-btn');
-const aiPromptInput = document.getElementById('ai-prompt');
-const messageTextarea = document.getElementById('message');
-const geminiStatus = document.getElementById('gemini-status');
-const contactNameInput = document.getElementById('name');
+    // --- 2. NEW: AI Contact Form Assistant ---
+    const generateMessageBtn = document.getElementById('gemini-pro-btn');
+    const aiPromptInput = document.getElementById('ai-prompt');
+    const messageTextarea = document.getElementById('message');
+    const geminiStatus = document.getElementById('gemini-status');
+    const contactNameInput = document.getElementById('name');
 
-if (generateMessageBtn) {
-    generateMessageBtn.addEventListener('click', async () => {
+    if (generateMessageBtn) {
+        generateMessageBtn.addEventListener('click', async () => {
 
-        const prompt = aiPromptInput.value.trim();
-        const name = contactNameInput.value.trim() || 'Sender';
+            const prompt = aiPromptInput.value.trim();
+            const name = contactNameInput.value.trim() || 'Sender';
 
-        if (!prompt) {
-            geminiStatus.textContent = "Please enter a few keywords.";
-            geminiStatus.className = "form-status show error";
-            setTimeout(() => geminiStatus.classList.remove("show"), 3000);
-            return;
-        }
+            if (!prompt) {
+                geminiStatus.textContent = "Please enter a few keywords.";
+                geminiStatus.className = "form-status show error";
+                setTimeout(() => geminiStatus.classList.remove("show"), 3000);
+                return;
+            }
 
-        // Loading UI elements
-        const glassIcon = generateMessageBtn.querySelector('.gemini-glass-icon');
-        const btnLoader = generateMessageBtn.querySelector('.button-loader');
+            // Loading UI elements
+            const glassIcon = generateMessageBtn.querySelector('.gemini-glass-icon');
+            const btnLoader = generateMessageBtn.querySelector('.button-loader');
 
-        generateMessageBtn.disabled = true;
-        if (glassIcon) glassIcon.classList.add('hidden');
-        if (btnLoader) btnLoader.classList.remove('hidden');
-        feather.replace();
+            generateMessageBtn.disabled = true;
+            if (glassIcon) glassIcon.classList.add('hidden');
+            if (btnLoader) btnLoader.classList.remove('hidden');
+            feather.replace();
 
-        geminiStatus.textContent = "✨ Drafting message... please wait.";
-        geminiStatus.className = "form-status show success";
+            geminiStatus.textContent = "✨ Drafting message... please wait.";
+            geminiStatus.className = "form-status show success";
 
-        // System instruction for Gemini
-        const systemInstruction = `
+            // System instruction for Gemini
+            const systemInstruction = `
             You are an AI assistant helping a visitor on Mohsin Haider Sultan's portfolio.
             Write a professional and friendly message (maximum 4 sentences) from ${name}.
         `;
 
-        const finalPrompt = `Keywords: "${prompt}". Sender Name: ${name}. Draft the message.`;
+            const finalPrompt = `Keywords: "${prompt}". Sender Name: ${name}. Draft the message.`;
 
-        // Call Gemini API
-        const response = await callGeminiAPI(finalPrompt, systemInstruction);
+            // Call Gemini API
+            const response = await callGeminiAPI(finalPrompt, systemInstruction);
 
-        if (response.success) {
-            messageTextarea.value = response.text.replace(/\*/g, '');
-            geminiStatus.textContent = "✨ Message drafted!";
-            geminiStatus.className = "form-status show success";
-        } else {
-            geminiStatus.textContent = "❌ Error creating message. Try again.";
-            geminiStatus.className = "form-status show error";
-        }
+            if (response.success) {
+                messageTextarea.value = response.text.replace(/\*/g, '');
+                geminiStatus.textContent = "✨ Message drafted!";
+                geminiStatus.className = "form-status show success";
+            } else {
+                geminiStatus.textContent = "❌ Error creating message. Try again.";
+                geminiStatus.className = "form-status show error";
+            }
 
-        // Reset loading UI
-        generateMessageBtn.disabled = false;
-        if (glassIcon) glassIcon.classList.remove('hidden');
-        if (btnLoader) btnLoader.classList.add('hidden');
+            // Reset loading UI
+            generateMessageBtn.disabled = false;
+            if (glassIcon) glassIcon.classList.remove('hidden');
+            if (btnLoader) btnLoader.classList.add('hidden');
 
-        setTimeout(() => geminiStatus.classList.remove("show"), 4000);
-    });
-}
+            setTimeout(() => geminiStatus.classList.remove("show"), 4000);
+        });
+    }
 
 
 
@@ -540,12 +631,12 @@ if (generateMessageBtn) {
                 if (response.ok) {
                     showStatus('✅ Message sent successfully!', 'success');
                     localStorage.removeItem('offlineMessage');
-                    return true; 
+                    return true;
                 } else {
                     const data = await response.json();
                     const errorMsg = data.errors ? data.errors.map(err => err.message).join(", ") : "Something went wrong!";
                     showStatus(`❌ ${errorMsg}`, 'error');
-                    return false; 
+                    return false;
                 }
             } catch (error) {
                 if (!navigator.onLine) {
@@ -560,7 +651,7 @@ if (generateMessageBtn) {
 
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
+
             const submitBtn = contactForm.querySelector('button[type="submit"]');
             const btnText = submitBtn.querySelector('.button-text');
             const btnLoader = submitBtn.querySelector('.button-loader');
@@ -568,7 +659,7 @@ if (generateMessageBtn) {
             submitBtn.disabled = true;
             btnText.classList.add('hidden');
             btnLoader.classList.remove('hidden');
-            initFeather(); 
+            initFeather();
 
             const name = contactForm.name.value.trim();
             const email = contactForm.email.value.trim();
@@ -593,11 +684,11 @@ if (generateMessageBtn) {
             }
 
             const success = await submitForm(name, email, message);
-            
+
             if (success) {
-                contactForm.reset(); 
+                contactForm.reset();
             }
-            
+
             stopLoading();
         });
 
@@ -620,82 +711,81 @@ if (generateMessageBtn) {
     }
 
     // Scroll-to-top button
-       
+    // MOVED inside DOMContentLoaded for safety
+    const btn = document.getElementById("scrollTopBtn");
 
- 
+    if (btn) {
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 250) {
+                // Use .show class as defined in style.css
+                btn.classList.add("show");
+            } else {
+                // Use .show class as defined in style.css
+                btn.classList.remove("show");
+            }
+        });
 
-            const btn = document.getElementById("scrollTopBtn");
-
-            window.addEventListener("scroll", () => {
-                if (window.scrollY > 250) {
-                    btn.style.opacity = "1";
-                    btn.style.pointerEvents = "auto";
-                } else {
-                    btn.style.opacity = "0";
-                    btn.style.pointerEvents = "none";
-                }
-            });
-
-            btn.addEventListener("click", () => {
-                window.scrollTo({ top: 0, behavior: "smooth" });
-            });
-
-
-
-function initHeroParticles() {
-    const canvas = document.getElementById("particles-canvas");
-    const ctx = canvas.getContext("2d");
-
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
-
-    // Particle properties
-    const numParticles = 55;
-    const particles = [];
-
-    for (let i = 0; i < numParticles; i++) {
-        particles.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            size: Math.random() * 3 + 1,
-            speedX: Math.random() * 0.4 - 0.2,
-            speedY: Math.random() * 0.4 - 0.2,
-            alpha: Math.random() * 0.3 + 0.2,
+        btn.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
         });
     }
 
-    function animateParticles() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    function initHeroParticles() {
+        const canvas = document.getElementById("particles-canvas");
+        const ctx = canvas.getContext("2d");
 
-        particles.forEach(p => {
-            ctx.globalAlpha = p.alpha;
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-            ctx.fillStyle = "#22d3ee"; // cyan glow
-            ctx.fill();
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener("resize", resizeCanvas);
 
-            // Move
-            p.x += p.speedX;
-            p.y += p.speedY;
+        // Particle properties
+        const numParticles = 55;
+        const particles = [];
 
-            // Wrap around screen
-            if (p.x < 0) p.x = canvas.width;
-            if (p.x > canvas.width) p.x = 0;
-            if (p.y < 0) p.y = canvas.height;
-            if (p.y > canvas.height) p.y = 0;
-        });
+        for (let i = 0; i < numParticles; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 3 + 1,
+                speedX: Math.random() * 0.4 - 0.2,
+                speedY: Math.random() * 0.4 - 0.2,
+                alpha: Math.random() * 0.3 + 0.2,
+            });
+        }
 
-        requestAnimationFrame(animateParticles);
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(p => {
+                ctx.globalAlpha = p.alpha;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = "#22d3ee"; // cyan glow
+                ctx.fill();
+
+                // Move
+                p.x += p.speedX;
+                p.y += p.speedY;
+
+                // Wrap around screen
+                if (p.x < 0) p.x = canvas.width;
+                if (p.x > canvas.width) p.x = 0;
+                if (p.y < 0) p.y = canvas.height;
+                if (p.y > canvas.height) p.y = 0;
+            });
+
+            requestAnimationFrame(animateParticles);
+        }
+
+        animateParticles();
     }
 
-    animateParticles();
-}
+    // BUG FIX: Changed from addEventListener to a direct call
+    // This ensures it runs once the main DOM listener fires.
+    initHeroParticles();
 
-document.addEventListener("DOMContentLoaded", initHeroParticles);
 
-    
 });
